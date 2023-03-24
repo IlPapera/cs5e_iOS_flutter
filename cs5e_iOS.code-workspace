@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../cs5e_iOS"
+		},
+		{
+			"name": "cs5e_iOS_flutter",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
