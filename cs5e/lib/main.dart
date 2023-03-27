@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
             child: const Text('test'),
             margin: const EdgeInsets.all(10),
             padding: const EdgeInsets.all(10),
-            color: Colors.red,
+            color: Colors.green,
             height: 100,
             width: 100,
             //decoration: BoxDecoration(shape: BoxShape.circle),
