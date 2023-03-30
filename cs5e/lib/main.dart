@@ -66,8 +66,9 @@ void main() {
 
 Widget attributeBoxGenerator(
     String name, int value, List<String> stats, List<int> profs) {
-  Widget returnBox =
-    child: Card(
+  Widget returnBox = Card(
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
           Expanded(
@@ -77,14 +78,14 @@ Widget attributeBoxGenerator(
                 Expanded(
                   flex: 8,
                   child: FittedBox(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.fitWidth,
                     child: Text(value.toString()),
                   ),
                 ),
                 Expanded(
                   flex: 3,
                   child: FittedBox(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.fitWidth,
                     child: Text(name),
                   ),
                 ),
@@ -126,6 +127,7 @@ Widget attributeBoxGenerator(
         ],
       ),
     ),
+  );
   return returnBox;
 }
 
@@ -174,29 +176,32 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               children: [
                 Expanded(
-                    flex: 1,
-                    child: Row(
-                      children: [
-                        Expanded(flex: 1, child: attributes[0]),
-                        Expanded(flex: 1, child: attributes[1]),
-                      ],
-                    ),),
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Expanded(flex: 1, child: attributes[0]),
+                      Expanded(flex: 1, child: attributes[1]),
+                    ],
+                  ),
+                ),
                 Expanded(
-                    flex: 1,
-                    child: Row(
-                      children: [
-                        Expanded(flex: 1, child: attributes[2]),
-                        Expanded(flex: 1, child: attributes[3]),
-                      ],
-                    ),),
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Expanded(flex: 1, child: attributes[2]),
+                      Expanded(flex: 1, child: attributes[3]),
+                    ],
+                  ),
+                ),
                 Expanded(
-                    flex: 1,
-                    child: Row(
-                      children: [
-                        Expanded(flex: 1, child: attributes[4]),
-                        Expanded(flex: 1, child: attributes[5]),
-                      ],
-                    ),),
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Expanded(flex: 1, child: attributes[4]),
+                      Expanded(flex: 1, child: attributes[5]),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
