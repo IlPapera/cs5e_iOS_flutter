@@ -99,27 +99,27 @@ Widget attributeBoxGenerator(
               children: [
                 Expanded(
                   flex: 1,
-                  child: Text(stats[0]),
+                  child: Text(stats[0], textAlign: TextAlign.left),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Text(stats[1]),
+                  child: Text(stats[1], textAlign: TextAlign.left),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Text(stats[2]),
+                  child: Text(stats[2], textAlign: TextAlign.left),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Text(stats[3]),
+                  child: Text(stats[3], textAlign: TextAlign.left),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Text(stats[4], style: const TextStyle()),
+                  child: Text(stats[4], textAlign: TextAlign.left),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Text(stats[5]),
+                  child: Text(stats[5], textAlign: TextAlign.left),
                 ),
               ],
             ),
@@ -150,17 +150,38 @@ class _MyAppState extends State<MyApp> {
     List<Widget> attributes = [];
 
     attributes.add(attributeBoxGenerator(attributeNames[0], 1,
-        ['name1', 'name2', 'name3', 'name4', 'name5', 'name6'], []));
-    attributes.add(attributeBoxGenerator(attributeNames[0], 2,
-        ['name1', 'name2', 'name3', 'name4', 'name5', 'name6'], []));
-    attributes.add(attributeBoxGenerator(attributeNames[0], 3,
-        ['name1', 'name2', 'name3', 'name4', 'name5', 'name6'], []));
-    attributes.add(attributeBoxGenerator(attributeNames[0], 4,
-        ['name1', 'name2', 'name3', 'name4', 'name5', 'name6'], []));
-    attributes.add(attributeBoxGenerator(attributeNames[0], 5,
-        ['name1', 'name2', 'name3', 'name4', 'name5', 'name6'], []));
-    attributes.add(attributeBoxGenerator(attributeNames[0], 6,
-        ['name1', 'name2', 'name3', 'name4', 'name5', 'name6'], []));
+        ['Saving Throws', 'Athletics', '', '', '', ''], []));
+    attributes.add(attributeBoxGenerator(
+        attributeNames[1],
+        2,
+        ['Saving Throws', 'Acrobatics', 'Sleight of Hand', 'Stealth', '', ''],
+        []));
+    attributes.add(attributeBoxGenerator(
+        attributeNames[2], 3, ['Saving Throws', '', '', '', '', ''], []));
+    attributes.add(attributeBoxGenerator(attributeNames[3], 4, [
+      'Saving Throws',
+      'Arcana',
+      'History',
+      'Investigation',
+      'Nature',
+      'Religion'
+    ], []));
+    attributes.add(attributeBoxGenerator(attributeNames[4], 5, [
+      'Saving Throws',
+      'Animal Handling',
+      'Insight',
+      'Medicine',
+      'Perception',
+      'Survival'
+    ], []));
+    attributes.add(attributeBoxGenerator(attributeNames[5], 6, [
+      'Saving Throws',
+      'Deception',
+      'Intimidation',
+      'Performance',
+      'Persuasion',
+      ''
+    ], []));
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------  HOME  ------------------------------------------------------------------------------------
@@ -330,7 +351,7 @@ class _MyAppState extends State<MyApp> {
 
     final bottNavBar = BottomNavigationBar(
       items: barItems,
-      //backgroundColor: Colors.grey,
+      fixedColor: Colors.grey,
       currentIndex: currIndex,
       type: BottomNavigationBarType.fixed,
       onTap: (int indexIn) {
