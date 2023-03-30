@@ -66,10 +66,8 @@ void main() {
 
 Widget attributeBoxGenerator(
     String name, int value, List<String> stats, List<int> profs) {
-  Widget ret = Padding(
-    padding: const EdgeInsets.all(0.5),
-    child: Container(
-      padding: const EdgeInsets.all(10),
+  Widget returnBox =
+    child: Card(
       child: Row(
         children: [
           Expanded(
@@ -77,16 +75,16 @@ Widget attributeBoxGenerator(
             child: Column(
               children: [
                 Expanded(
-                  flex: 5,
+                  flex: 8,
                   child: FittedBox(
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     child: Text(value.toString()),
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: FittedBox(
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     child: Text(name),
                   ),
                 ),
@@ -95,7 +93,7 @@ Widget attributeBoxGenerator(
           ),
           const Divider(),
           Expanded(
-            flex: 4,
+            flex: 3,
             child: Column(
               children: [
                 Expanded(
@@ -128,8 +126,7 @@ Widget attributeBoxGenerator(
         ],
       ),
     ),
-  );
-  return ret;
+  return returnBox;
 }
 
 class MyApp extends StatefulWidget {
@@ -173,7 +170,7 @@ class _MyAppState extends State<MyApp> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            flex: 2,
+            flex: 5,
             child: Column(
               children: [
                 Expanded(
@@ -183,7 +180,7 @@ class _MyAppState extends State<MyApp> {
                         Expanded(flex: 1, child: attributes[0]),
                         Expanded(flex: 1, child: attributes[1]),
                       ],
-                    )),
+                    ),),
                 Expanded(
                     flex: 1,
                     child: Row(
@@ -191,7 +188,7 @@ class _MyAppState extends State<MyApp> {
                         Expanded(flex: 1, child: attributes[2]),
                         Expanded(flex: 1, child: attributes[3]),
                       ],
-                    )),
+                    ),),
                 Expanded(
                     flex: 1,
                     child: Row(
@@ -199,12 +196,12 @@ class _MyAppState extends State<MyApp> {
                         Expanded(flex: 1, child: attributes[4]),
                         Expanded(flex: 1, child: attributes[5]),
                       ],
-                    )),
+                    ),),
               ],
             ),
           ),
           Expanded(
-            flex: 4,
+            flex: 6,
             child: ListView(
               children: const [
                 Text('data01'),
@@ -310,17 +307,17 @@ class _MyAppState extends State<MyApp> {
       const BottomNavigationBarItem(
           tooltip: 'Home',
           icon: Icon(Icons.home_rounded, color: Colors.grey),
-          label: '',
+          label: 'Home',
           activeIcon: Icon(Icons.home_rounded, color: Colors.grey)),
       const BottomNavigationBarItem(
           tooltip: 'Inventoiry',
           icon: Icon(Icons.all_inbox_rounded, color: Colors.grey),
-          label: '',
+          label: 'Inventory',
           activeIcon: Icon(Icons.all_inbox_rounded, color: Colors.grey)),
       const BottomNavigationBarItem(
           tooltip: 'Spells',
           icon: Icon(Icons.auto_fix_high_rounded, color: Colors.grey),
-          label: '',
+          label: 'Spells',
           activeIcon: Icon(Icons.auto_fix_high_rounded, color: Colors.grey)),
     ];
 
