@@ -64,7 +64,7 @@ Text randomChild = const Text('');
 
 int level = 2;
 
-String nomePersonaggio = 'Pallad';
+String nomePersonaggio = 'Riven Gudsen';
 
 void main() {
   runApp(const MyApp());
@@ -249,69 +249,76 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int currIndex = 0;
 
-  final drawerItems = ListView();
-
   @override
   Widget build(BuildContext context) {
     List<Widget> attributes = [];
 
-    attributes.add(attributeBoxGenerator(
+    attributes.add(
+      attributeBoxGenerator(
         attributeNames[0],
-        10,
+        8,
         ['Saving Throws', '', '', '', '', 'Athletics'],
-        ['1', '', '', '', '', '0']));
+        ['0', '', '', '', '', '1'],
+      ),
+    );
     attributes.add(attributeBoxGenerator(
         attributeNames[1],
-        08,
+        15,
         ['Saving Throws', '', '', 'Acrobatics', 'Sleight of Hand', 'Stealth'],
-        ['0', '', '', '1', '0', '2']));
-    attributes.add(attributeBoxGenerator(attributeNames[2], 16,
-        ['Saving Throws', '', '', '', '', ''], ['0', '', '', '', '', '']));
-    attributes.add(attributeBoxGenerator(attributeNames[3], 12, [
-      'Saving Throws',
-      'Arcana',
-      'History',
-      'Investigation',
-      'Nature',
-      'Religion'
-    ], [
-      '1',
-      '0',
-      '0',
-      '0',
-      '0',
-      '0'
-    ]));
-    attributes.add(attributeBoxGenerator(attributeNames[4], 15, [
-      'Saving Throws',
-      'Animal Handling',
-      'Insight',
-      'Medicine',
-      'Perception',
-      'Survival'
-    ], [
-      '0',
-      '2',
-      '0',
-      '1',
-      '0',
-      '0'
-    ]));
-    attributes.add(attributeBoxGenerator(attributeNames[5], 14, [
-      'Saving Throws',
-      '',
-      'Deception',
-      'Intimidation',
-      'Performance',
-      'Persuasion'
-    ], [
-      '0',
-      '',
-      '0',
-      '0',
-      '2',
-      '0'
-    ]));
+        ['0', '', '', '0', '0', '0']));
+    attributes.add(
+      attributeBoxGenerator(
+        attributeNames[2],
+        14,
+        ['Saving Throws', '', '', '', '', ''],
+        ['0', '', '', '', '', ''],
+      ),
+    );
+    attributes.add(
+      attributeBoxGenerator(
+        attributeNames[3],
+        10,
+        [
+          'Saving Throws',
+          'Arcana',
+          'History',
+          'Investigation',
+          'Nature',
+          'Religion'
+        ],
+        ['0', '0', '0', '1', '0', '0'],
+      ),
+    );
+    attributes.add(
+      attributeBoxGenerator(
+        attributeNames[4],
+        12,
+        [
+          'Saving Throws',
+          'Animal Handling',
+          'Insight',
+          'Medicine',
+          'Perception',
+          'Survival'
+        ],
+        ['1', '0', '0', '0', '1', '0'],
+      ),
+    );
+    attributes.add(
+      attributeBoxGenerator(
+        attributeNames[5],
+        16,
+        [
+          'Saving Throws',
+          '',
+          'Deception',
+          'Intimidation',
+          'Performance',
+          'Persuasion'
+        ],
+        ['1', '', '1', '1', '0', '0'],
+      ),
+    );
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------  HOME  ------------------------------------------------------------------------------------
@@ -578,9 +585,6 @@ class _MyAppState extends State<MyApp> {
           child: tabPages[currIndex],
         ),
         bottomNavigationBar: bottNavBar,
-        drawer: Drawer(
-          child: drawerItems,
-        ),
       ),
     );
   }
