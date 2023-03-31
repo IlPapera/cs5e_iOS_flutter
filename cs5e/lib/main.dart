@@ -69,6 +69,9 @@ int level = 2;
 String nomePersonaggio = 'Riven Gudsen';
 
 void main() {
+  for (int i = 0; i < 50; i++) {
+    data50.add(Text('data${i + 1}'));
+  }
   runApp(const MyApp());
 }
 
@@ -101,7 +104,7 @@ Widget attributeBoxGenerator(
 
   modifier = valueToSignedString(modifierFromValue(value));
 
-  statistic = statistic + value.toString();
+  statistic += value.toString();
 
   Widget returnBox = Card(
     child: Padding(
@@ -259,10 +262,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     List<Widget> attributes = [];
 
-    for (int i = 0; i < 50; i++) {
-      data50.add(Text('data${i + 1}'));
-    }
-
     alphabeticalOrder();
 
     attributes.add(
@@ -394,11 +393,11 @@ class _MyAppState extends State<MyApp> {
                         child: Card(
                           child: Column(
                             children: [
-                              Expanded(
+                              const Expanded(
                                 flex: 1,
                                 child: Text('Weapon Inventory'),
                               ),
-                              Divider(),
+                              const Divider(),
                               Expanded(
                                 flex: 5,
                                 child: Padding(
@@ -418,11 +417,11 @@ class _MyAppState extends State<MyApp> {
                         child: Card(
                           child: Column(
                             children: [
-                              Expanded(
+                              const Expanded(
                                 flex: 1,
                                 child: Text('Quick Inventory'),
                               ),
-                              Divider(),
+                              const Divider(),
                               Expanded(
                                 flex: 5,
                                 child: Padding(
@@ -442,11 +441,11 @@ class _MyAppState extends State<MyApp> {
                         child: Card(
                           child: Column(
                             children: [
-                              Expanded(
+                              const Expanded(
                                 flex: 1,
-                                child: Text('Active Spell list'),
+                                child: Text('Active Spells'),
                               ),
-                              Divider(),
+                              const Divider(),
                               Expanded(
                                 flex: 5,
                                 child: Padding(
