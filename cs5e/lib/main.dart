@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+List<Widget> data50 = [];
+
 final List<String> attributeNames = [
   'Strength',
   'Dexterity',
@@ -68,6 +70,10 @@ String nomePersonaggio = 'Riven Gudsen';
 
 void main() {
   runApp(const MyApp());
+}
+
+void alphabeticalOrder() {
+  //TODO to reorder the inventory and spells in alphabetical order
 }
 
 int profBonusFromLevel(int level) {
@@ -253,6 +259,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     List<Widget> attributes = [];
 
+    for (int i = 0; i < 50; i++) {
+      data50.add(Text('data${i + 1}'));
+    }
+
+    alphabeticalOrder();
+
     attributes.add(
       attributeBoxGenerator(
         attributeNames[0],
@@ -365,64 +377,94 @@ class _MyAppState extends State<MyApp> {
           ),
           Expanded(
             flex: 6,
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView(
-                  children: const [
-                    Text('data01'),
-                    Text('data02'),
-                    Text('data03'),
-                    Text('data04'),
-                    Text('data05'),
-                    Text('data06'),
-                    Text('data07'),
-                    Text('data08'),
-                    Text('data09'),
-                    Text('data10'),
-                    Text('data11'),
-                    Text('data12'),
-                    Text('data13'),
-                    Text('data14'),
-                    Text('data15'),
-                    Text('data16'),
-                    Text('data17'),
-                    Text('data18'),
-                    Text('data19'),
-                    Text('data20'),
-                    Text('data21'),
-                    Text('data22'),
-                    Text('data23'),
-                    Text('data24'),
-                    Text('data25'),
-                    Text('data26'),
-                    Text('data27'),
-                    Text('data28'),
-                    Text('data29'),
-                    Text('data30'),
-                    Text('data31'),
-                    Text('data32'),
-                    Text('data33'),
-                    Text('data34'),
-                    Text('data35'),
-                    Text('data36'),
-                    Text('data37'),
-                    Text('data38'),
-                    Text('data39'),
-                    Text('data40'),
-                    Text('data41'),
-                    Text('data42'),
-                    Text('data43'),
-                    Text('data44'),
-                    Text('data45'),
-                    Text('data46'),
-                    Text('data47'),
-                    Text('data48'),
-                    Text('data49'),
-                    Text('data50'),
-                  ],
+            child: Column(
+              children: [
+                const Expanded(
+                  flex: 1,
+                  child: Card(
+                    child: Text('random'),
+                  ),
                 ),
-              ),
+                Expanded(
+                  flex: 2,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Card(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Text('Weapon Inventory'),
+                              ),
+                              Divider(),
+                              Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 7),
+                                  child: ListView(
+                                    children: data50,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Card(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Text('Quick Inventory'),
+                              ),
+                              Divider(),
+                              Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 7),
+                                  child: ListView(
+                                    children: data50,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Card(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Text('Active Spell list'),
+                              ),
+                              Divider(),
+                              Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 7),
+                                  child: ListView(
+                                    children: data50,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],
