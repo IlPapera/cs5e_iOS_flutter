@@ -133,7 +133,17 @@ Widget attributeBoxGenerator(
                   flex: 3,
                   child: FittedBox(
                     fit: BoxFit.fitHeight,
-                    child: Card(child: Text(statistic)),
+                    child: Card(
+                      child: TextButton(
+                        onPressed: () {
+                          //TODO funzioni di premuta bottoni
+                        },
+                        child: Text(
+                          statistic,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ),
                 )
               ],
