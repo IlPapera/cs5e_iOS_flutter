@@ -68,24 +68,40 @@
     <l9slotsTotal>0</l9slotsTotal>
     <l9slotsUsed>0</l9slotsUsed>
 </stats>
+
 <inventory>
-    <animal type='mount'>
+    <animal>
         <name>Cavallo (Ruthilia)</name>
+        <number>1</number>
         <description>Un cavallo tascabile</description>
     </animal>
     <weapon>
         <name>Falcetto</name>
+        <number>1</number>
         <description>Falcetto da battaglia</description>
     </weapon>
+    <item>
+        <name>Candelotto runico</name>
+        <number>5</number>
+        <description>Candelotto di dinamite con delle strane rune sul corpo</description>
+    </item>
 </inventory>
+
 <spells>
-    <spell>
-        <name>mmm</name>
-        <level></level>
-        <description>mmm</description>
-        <effects>
-            <effect>mmm</effect>
-        </effects>
+    <spell active='1'>
+        <name>Eldrich Blast</name>
+        <level>0</level>
+        <range>120 feet</range>
+        <activation>V, S</activation>
+        <duration>Instantaneous</duration>
+        <description>A beam of crackling energy streaks toward a creature within range.</description>
+        <effect>
+            Make a ranged spell attack against the target. On a hit, the target takes 1d10 force damage.
+            At Higher Levels.
+            The spell creates more than one beam when you reach higher levels: two beams at 5th level, three beams at 11th level, and four beams at 17th level.
+            You can direct the beams at the same target or at different ones.
+            Make a separate attack roll for each beam.
+        </effect>
     </spell>
 </spells>
 </all>

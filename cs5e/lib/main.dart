@@ -116,7 +116,13 @@ Widget quickInventoryGenerator(String titleBox, List<Widget> items) {
         children: [
           Expanded(
             flex: 1,
-            child: Text(titleBox),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text(titleBox),
+              ),
+            ),
           ),
           const Divider(),
           Expanded(
