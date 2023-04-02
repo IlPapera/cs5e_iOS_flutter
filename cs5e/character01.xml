@@ -94,19 +94,35 @@
     </consumable>
     <item>
         <name>Roccia a forma di occhio</name>
-        <number></number>
-        <description></description>
+        <number>1</number>
+        <description>mas</description>
     </item>
     <item>
-        <name>Roccia a forma di occhio</name>
-        <number></number>
-        <description></description>
+        <name>Occhio a forma di roccia</name>
+        <number>1</number>
+        <description>mas</description>
     </item>
 </inventory>
 
 <spells>
     <spell>
         <name>Eldrich Blast</name>
+        <level>0</level>
+        <range>120 feet</range>
+        <activation>V, S</activation>
+        <duration>Instantaneous</duration>
+        <description>A beam of crackling energy streaks toward a creature within range.</description>
+        <effect>
+            Make a ranged spell attack against the target. On a hit, the target takes 1d10 force damage.
+            At Higher Levels.
+            The spell creates more than one beam when you reach higher levels: two beams at 5th level, three beams at 11th level, and four beams at 17th level.
+            You can direct the beams at the same target or at different ones.
+            Make a separate attack roll for each beam.
+        </effect>
+        <active>1</active>
+    </spell>
+    <spell>
+        <name>mmamaamamama Blast</name>
         <level>0</level>
         <range>120 feet</range>
         <activation>V, S</activation>

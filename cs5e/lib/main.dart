@@ -86,9 +86,9 @@ int level = 2;
 
 String nomePersonaggio = 'Riven Gudsen';
 
-Inventory inventory = new Inventory();
+Inventory inventory = Inventory();
 
-SpellBook spellBook = new SpellBook();
+SpellBook spellBook = SpellBook();
 
 List<String> statistics = [];
 
@@ -108,6 +108,10 @@ void main() {
   }
 
   loadCharacter();
+
+  debugPrint(inventory.toString());
+  debugPrint('\n\n');
+  debugPrint(spellBook.toString());
 
   runApp(const MyApp());
 }
@@ -775,8 +779,90 @@ void loadCharacter() {
   final file = File('character01.xml');
   final document = XmlDocument.parse(file.readAsStringSync());
   final List<XmlElement> spellTags = document.findAllElements('spell').toList();
-  print(detag(spellTags[0].findAllElements('name').toString(), 'name'));
-  for (int i = 0; i < spellTags.length; i++) {}
+
+  for (int i = 0; i < spellTags.length; i++) {
+    String name =
+        detag(spellTags[i].findAllElements('name').toString(), 'name');
+    int level = int.parse(
+        detag(spellTags[i].findAllElements('level').toString(), 'level'));
+    String range =
+        detag(spellTags[i].findAllElements('range').toString(), 'range');
+    String activation = detag(
+        spellTags[i].findAllElements('activation').toString(), 'activation');
+    String duration =
+        detag(spellTags[i].findAllElements('duration').toString(), 'duration');
+    String description = detag(
+        spellTags[i].findAllElements('description').toString(), 'description');
+    String effect =
+        detag(spellTags[i].findAllElements('effect').toString(), 'effect');
+
+    Spell spellTemp =
+        Spell(name, level, range, activation, duration, description, effect);
+    spellBook.spells.add(spellTemp);
+  }
+
+  final List<XmlElement> itemTags = document.findAllElements('item').toList();
+
+  for (int i = 0; i < itemTags.length; i++) {
+    String name = detag(itemTags[i].findAllElements('name').toString(), 'name');
+    int number = int.parse(
+        detag(itemTags[i].findAllElements('number').toString(), 'number'));
+    String description = detag(
+        itemTags[i].findAllElements('description').toString(), 'description');
+
+    Item itemTemp = Item(name, number, description);
+    inventory.items.add(itemTemp);
+  }
+
+  final List<XmlElement> animalTags =
+      document.findAllElements('animal').toList();
+
+  for (int i = 0; i < animalTags.length; i++) {
+    String name =
+        detag(animalTags[i].findAllElements('name').toString(), 'name');
+    int number = int.parse(
+        detag(animalTags[i].findAllElements('number').toString(), 'number'));
+    String description = detag(
+        animalTags[i].findAllElements('description').toString(), 'description');
+
+    Animal animalTemp = Animal(name, number, description);
+    inventory.animals.add(animalTemp);
+  }
+
+  final List<XmlElement> consumableTags =
+      document.findAllElements('consumable').toList();
+
+  for (int i = 0; i < consumableTags.length; i++) {
+    String name =
+        detag(consumableTags[i].findAllElements('name').toString(), 'name');
+    int number = int.parse(detag(
+        consumableTags[i].findAllElements('number').toString(), 'number'));
+    String description = detag(
+        consumableTags[i].findAllElements('description').toString(),
+        'description');
+
+    Consumable consumableTemp = Consumable(name, number, description);
+    inventory.consumables.add(consumableTemp);
+  }
+
+  final List<XmlElement> weaponTags =
+      document.findAllElements('weapon').toList();
+
+  for (int i = 0; i < weaponTags.length; i++) {
+    String name =
+        detag(weaponTags[i].findAllElements('name').toString(), 'name');
+    int number = int.parse(
+        detag(weaponTags[i].findAllElements('number').toString(), 'number'));
+    String description = detag(
+        weaponTags[i].findAllElements('description').toString(), 'description');
+    String damage =
+        detag(weaponTags[i].findAllElements('damage').toString(), 'damage');
+    String bonus =
+        detag(weaponTags[i].findAllElements('bonus').toString(), 'bonus');
+
+    Weapon weaponTemp = Weapon(name, number, description, damage, bonus);
+    inventory.weapons.add(weaponTemp);
+  }
 }
 
 /*
@@ -836,6 +922,11 @@ class Spell {
     description = description_;
     effect = effect_;
   }
+
+  @override
+  String toString() {
+    return '$name, $level, $range, $activation, $duration, $description, $effect';
+  }
 }
 
 class Item {
@@ -847,6 +938,11 @@ class Item {
     name = name_;
     number = number_;
     description = description_;
+  }
+
+  @override
+  String toString() {
+    return '$name, $number, $description';
   }
 }
 
@@ -860,6 +956,11 @@ class Animal {
     number = number_;
     description = description_;
   }
+
+  @override
+  String toString() {
+    return '$name, $number, $description';
+  }
 }
 
 class Consumable {
@@ -872,6 +973,11 @@ class Consumable {
     number = number_;
     description = description_;
   }
+
+  @override
+  String toString() {
+    return '$name, $number, $description';
+  }
 }
 
 class Weapon {
@@ -879,12 +985,20 @@ class Weapon {
   int number = 0;
   String description = '';
   String damage = '';
+  String bonus = '';
 
-  Weapon(String name_, int number_, String description_, String damage_) {
+  Weapon(String name_, int number_, String description_, String damage_,
+      String bonus_) {
     name = name_;
     number = number_;
     description = description_;
     damage = damage_;
+    bonus = bonus_;
+  }
+
+  @override
+  String toString() {
+    return '$name, $number, $description, $damage, $bonus';
   }
 }
 
@@ -897,6 +1011,35 @@ class Inventory {
   void inventoryOrder() {
     //TODO to reorder the inventory in alphabetical order
   }
+
+  @override
+  String toString() {
+    String total = '';
+
+    for (int i = 0; i < items.length; i++) {
+      total += '${items[i].toString()}\n';
+    }
+
+    total += '\n';
+
+    for (int i = 0; i < consumables.length; i++) {
+      total += '${consumables[i].toString()}\n';
+    }
+
+    total += '\n';
+
+    for (int i = 0; i < weapons.length; i++) {
+      total += '${weapons[i].toString()}\n';
+    }
+
+    total += '\n';
+
+    for (int i = 0; i < animals.length; i++) {
+      total += '${animals[i].toString()}\n';
+    }
+
+    return total;
+  }
 }
 
 class SpellBook {
@@ -904,5 +1047,15 @@ class SpellBook {
 
   void spellsOrder() {
     //TODO to reorder the spells in active order, then level, then alphabetical order
+  }
+
+  @override
+  String toString() {
+    String total = '';
+
+    for (int i = 0; i < spells.length; i++) {
+      total += '${spells[i].toString()}\n';
+    }
+    return total;
   }
 }
