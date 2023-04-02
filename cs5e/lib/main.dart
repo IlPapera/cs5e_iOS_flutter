@@ -90,6 +90,8 @@ Inventory inventory = new Inventory();
 
 SpellBook spellBook = new SpellBook();
 
+List<String> statistics = [];
+
 /*
 .##.....##....###....####.##....##
 .###...###...##.##....##..###...##
@@ -769,7 +771,13 @@ class _MyAppState extends State<MyApp> {
 .########..#######..##.....##.########.....##.....##.########....##....##.....##..#######..########...######.
 */
 
-void loadCharacter() {}
+void loadCharacter() {
+  final file = File('character01.xml');
+  final document = XmlDocument.parse(file.readAsStringSync());
+  final List<XmlElement> spellTags = document.findAllElements('spell').toList();
+  print(detag(spellTags[0].findAllElements('name').toString(), 'name'));
+  for (int i = 0; i < spellTags.length; i++) {}
+}
 
 /*
 .##.....##.####.##....##..#######..########.....##.....##.########.########.##.....##..#######..########...######.
@@ -780,6 +788,10 @@ void loadCharacter() {}
 .##.....##..##..##...###.##.....##.##....##.....##.....##.##..........##....##.....##.##.....##.##.....##.##....##
 .##.....##.####.##....##..#######..##.....##....##.....##.########....##....##.....##..#######..########...######.
 */
+
+String detag(String tagged, String tag) {
+  return tagged.substring(tag.length + 3, tagged.length - (tag.length + 4));
+}
 
 int profBonusFromLevel(int level) {
   return 2;

@@ -87,15 +87,25 @@
         <number>5</number>
         <description>Candelotto di dinamite con delle strane rune sul corpo</description>
     </consumable>
-    <item>
-        <name>Candelotto runico</name>
-        <number>5</number>
+    <consumable>
+        <name>Razione giornaliera</name>
+        <number>8</number>
         <description>Candelotto di dinamite con delle strane rune sul corpo</description>
+    </consumable>
+    <item>
+        <name>Roccia a forma di occhio</name>
+        <number></number>
+        <description></description>
+    </item>
+    <item>
+        <name>Roccia a forma di occhio</name>
+        <number></number>
+        <description></description>
     </item>
 </inventory>
 
 <spells>
-    <spell active='1'>
+    <spell>
         <name>Eldrich Blast</name>
         <level>0</level>
         <range>120 feet</range>
@@ -109,6 +119,7 @@
             You can direct the beams at the same target or at different ones.
             Make a separate attack roll for each beam.
         </effect>
+        <active>1</active>
     </spell>
 </spells>
 </all>
