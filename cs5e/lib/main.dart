@@ -82,11 +82,23 @@ final List<String> keys = [
 
 List<Widget> data50 = [];
 
-Text randomChild = const Text('');
-
 int level = 2;
 
 String nomePersonaggio = 'Riven Gudsen';
+
+Inventory inventory = new Inventory();
+
+SpellBook spellBook = new SpellBook();
+
+/*
+.##.....##....###....####.##....##
+.###...###...##.##....##..###...##
+.####.####..##...##...##..####..##
+.##.###.##.##.....##..##..##.##.##
+.##.....##.#########..##..##..####
+.##.....##.##.....##..##..##...###
+.##.....##.##.....##.####.##....##
+*/
 
 void main() {
   for (int i = 0; i < 50; i++) {
@@ -414,7 +426,8 @@ class _MyAppState extends State<MyApp> {
     List<Widget> attributes = [];
     List<Widget> quickMenus = [];
 
-    alphabeticalOrder();
+    inventory.inventoryOrder();
+    spellBook.spellsOrder();
 
     attributes.add(
       attributeBoxGenerator(
@@ -497,7 +510,7 @@ class _MyAppState extends State<MyApp> {
 .##.....##..#######..##.....##.########
 */
 
-    Widget home = Scaffold(
+    Widget homePage = Scaffold(
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -573,7 +586,7 @@ class _MyAppState extends State<MyApp> {
 .####.##....##....###....########.##....##....##.....#######..##.....##....##...
 */
 
-    Widget inventory = Scaffold(
+    Widget inventoryPage = Scaffold(
       body: Row(
         children: [
           Expanded(
@@ -632,7 +645,7 @@ class _MyAppState extends State<MyApp> {
 ..######..##........########.########.########..######.
 */
 
-    Widget spells = Scaffold(
+    Widget spellsPage = Scaffold(
       body: Row(
         children: [
           Expanded(
@@ -692,9 +705,9 @@ class _MyAppState extends State<MyApp> {
 */
 
     final tabPages = <Widget>[
-      home,
-      inventory,
-      spells,
+      homePage,
+      inventoryPage,
+      spellsPage,
     ];
 
     final barItems = <BottomNavigationBarItem>[
@@ -768,10 +781,6 @@ void loadCharacter() {}
 .##.....##.####.##....##..#######..##.....##....##.....##.########....##....##.....##..#######..########...######.
 */
 
-void alphabeticalOrder() {
-  //TODO to reorder the inventory and spells in alphabetical order
-}
-
 int profBonusFromLevel(int level) {
   return 2;
 }
@@ -784,4 +793,104 @@ int modifierFromValue(int value) {
 
 String valueToSignedString(int value) {
   return value > 0 ? '+${value.toString()}' : value.toString();
+}
+
+/*
+..######..##..........###.....######...######..########..######.
+.##....##.##.........##.##...##....##.##....##.##.......##....##
+.##.......##........##...##..##.......##.......##.......##......
+.##.......##.......##.....##..######...######..######....######.
+.##.......##.......#########.......##.......##.##.............##
+.##....##.##.......##.....##.##....##.##....##.##.......##....##
+..######..########.##.....##..######...######..########..######.
+*/
+
+class Spell {
+  String name = '';
+  int level = 0;
+  String range = '';
+  String activation = '';
+  String duration = '';
+  String description = '';
+  String effect = '';
+
+  Spell(String name_, int level_, String range_, String activation_,
+      String duration_, String description_, String effect_) {
+    name = name_;
+    level = level_;
+    range = range_;
+    activation = activation_;
+    duration = duration_;
+    description = description_;
+    effect = effect_;
+  }
+}
+
+class Item {
+  String name = '';
+  int number = 0;
+  String description = '';
+
+  Item(String name_, int number_, String description_) {
+    name = name_;
+    number = number_;
+    description = description_;
+  }
+}
+
+class Animal {
+  String name = '';
+  int number = 0;
+  String description = '';
+
+  Animal(String name_, int number_, String description_) {
+    name = name_;
+    number = number_;
+    description = description_;
+  }
+}
+
+class Consumable {
+  String name = '';
+  int number = 0;
+  String description = '';
+
+  Consumable(String name_, int number_, String description_) {
+    name = name_;
+    number = number_;
+    description = description_;
+  }
+}
+
+class Weapon {
+  String name = '';
+  int number = 0;
+  String description = '';
+  String damage = '';
+
+  Weapon(String name_, int number_, String description_, String damage_) {
+    name = name_;
+    number = number_;
+    description = description_;
+    damage = damage_;
+  }
+}
+
+class Inventory {
+  List<Item> items = [];
+  List<Consumable> consumables = [];
+  List<Weapon> weapons = [];
+  List<Animal> animals = [];
+
+  void inventoryOrder() {
+    //TODO to reorder the inventory in alphabetical order
+  }
+}
+
+class SpellBook {
+  List<Spell> spells = [];
+
+  void spellsOrder() {
+    //TODO to reorder the spells in active order, then level, then alphabetical order
+  }
 }

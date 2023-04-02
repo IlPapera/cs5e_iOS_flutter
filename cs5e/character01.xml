@@ -52,7 +52,7 @@
     <l1slotsTotal>0</l1slotsTotal>
     <l1slotsUsed>0</l1slotsUsed>
     <l2slotsTotal>2</l2slotsTotal>
-    <l2slotsUsed>0</l2slotsUsed>
+    <l2slotsUsed>2</l2slotsUsed>
     <l3slotsTotal>0</l3slotsTotal>
     <l3slotsUsed>0</l3slotsUsed>
     <l4slotsTotal>0</l4slotsTotal>
@@ -78,8 +78,15 @@
     <weapon>
         <name>Falcetto</name>
         <number>1</number>
+        <damage>1d4 T</damage>
+        <bonus>+1</bonus>
         <description>Falcetto da battaglia</description>
     </weapon>
+    <consumable>
+        <name>Candelotto runico</name>
+        <number>5</number>
+        <description>Candelotto di dinamite con delle strane rune sul corpo</description>
+    </consumable>
     <item>
         <name>Candelotto runico</name>
         <number>5</number>
