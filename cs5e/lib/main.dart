@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xml/xml.dart';
+import 'dart:io';
 
 final List<String> attributeNames = [
   'Strength',
@@ -205,99 +206,172 @@ Widget attributeBoxGenerator(
             child: VerticalDivider(),
           ),
           Expanded(
-            flex: 5,
+            flex: 6,
             child: Column(
               children: [
                 Expanded(
                   flex: 1,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(stats[0]),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(stats[0]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            valueToSignedString(modifierFromValue(value) +
+                                profBonusFromLevel(level) *
+                                    int.parse(profs[0])),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const Divider(),
+                const Expanded(
+                  flex: 1,
+                  child: Divider(),
+                ),
                 Expanded(
                   flex: 1,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(stats[1]),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(stats[1]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            profs[1] == ''
+                                ? ''
+                                : valueToSignedString(modifierFromValue(value) +
+                                    profBonusFromLevel(level) *
+                                        int.parse(profs[1])),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(stats[2]),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(stats[2]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            profs[2] == ''
+                                ? ''
+                                : valueToSignedString(modifierFromValue(value) +
+                                    profBonusFromLevel(level) *
+                                        int.parse(profs[2])),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(stats[3]),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(stats[3]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            profs[3] == ''
+                                ? ''
+                                : valueToSignedString(modifierFromValue(value) +
+                                    profBonusFromLevel(level) *
+                                        int.parse(profs[3])),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(stats[4]),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(stats[4]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            profs[4] == ''
+                                ? ''
+                                : valueToSignedString(modifierFromValue(value) +
+                                    profBonusFromLevel(level) *
+                                        int.parse(profs[4])),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(stats[5]),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(stats[5]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            profs[5] == ''
+                                ? ''
+                                : valueToSignedString(modifierFromValue(value) +
+                                    profBonusFromLevel(level) *
+                                        int.parse(profs[5])),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(valueToSignedString(modifierFromValue(value) +
-                      profBonusFromLevel(level) * int.parse(profs[0]))),
-                ),
-                const Expanded(child: Text('')),
-                Expanded(
-                  flex: 1,
-                  child: Text(profs[1] == ''
-                      ? ''
-                      : valueToSignedString(modifierFromValue(value) +
-                          profBonusFromLevel(level) * int.parse(profs[1]))),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text(profs[2] == ''
-                      ? ''
-                      : valueToSignedString(modifierFromValue(value) +
-                          profBonusFromLevel(level) * int.parse(profs[2]))),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text(profs[3] == ''
-                      ? ''
-                      : valueToSignedString(modifierFromValue(value) +
-                          profBonusFromLevel(level) * int.parse(profs[3]))),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text(profs[4] == ''
-                      ? ''
-                      : valueToSignedString(modifierFromValue(value) +
-                          profBonusFromLevel(level) * int.parse(profs[4]))),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text(profs[5] == ''
-                      ? ''
-                      : valueToSignedString(modifierFromValue(value) +
-                          profBonusFromLevel(level) * int.parse(profs[5]))),
                 ),
               ],
             ),
