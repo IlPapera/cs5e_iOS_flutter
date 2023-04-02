@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<all>
+<stats>
+    <serial>000001</serial>
+    <cName>Riven Gudsen</cName>
+    <pName>Parham</pName>
+    <race>Dark Elf</race>
+    <class>Warlock</class>
+    <background>Dissident</background>
+    <alignment>CN</alignment>
+    <strength>8</strength>
+    <dexterity>15</dexterity>
+    <constitution>14</constitution>
+    <intelligence>10</intelligence>
+    <wisdom>12</wisdom>
+    <charisma>16</charisma>
+    <maxHealth>28</maxHealth>
+    <currentHealth>14</currentHealth>
+    <hitDice>1d8</hitDice>
+    <speed>18</speed>
+    <experience>2100</experience>
+    <profStrength>0</profStrength>
+    <profDexterity>0</profDexterity>
+    <profConstitution>0</profConstitution>
+    <profIntelligence>0</profIntelligence>
+    <profWisdom>1</profWisdom>
+    <profCharisma>1</profCharisma>
+    <profAthletics>1</profAthletics>
+    <profAcrobatics>0</profAcrobatics>
+    <profSleightOfHand>0</profSleightOfHand>
+    <profStealth>0</profStealth>
+    <profArcana>0</profArcana>
+    <profHistory>0</profHistory>
+    <profInvestigation>1</profInvestigation>
+    <profNature>0</profNature>
+    <profReligion>0</profReligion>
+    <profAnimalHandling>0</profAnimalHandling>
+    <profInsight>0</profInsight>
+    <profMedicine>0</profMedicine>
+    <profPerception>1</profPerception>
+    <profSurvival>0</profSurvival>
+    <profDeception>1</profDeception>
+    <profIntimidation>1</profIntimidation>
+    <profPerformance>0</profPerformance>
+    <profPersuasion>0</profPersuasion>
+    <inspiration>0</inspiration>
+    <bronzeCoins>19</bronzeCoins>
+    <silverCoins>19</silverCoins>
+    <goldCoins>13</goldCoins>
+    <platinumCoins>0</platinumCoins>
+    <currSpeed>18</currSpeed>
+    <l1slotsTotal>0</l1slotsTotal>
+    <l1slotsUsed>0</l1slotsUsed>
+    <l2slotsTotal>2</l2slotsTotal>
+    <l2slotsUsed>0</l2slotsUsed>
+    <l3slotsTotal>0</l3slotsTotal>
+    <l3slotsUsed>0</l3slotsUsed>
+    <l4slotsTotal>0</l4slotsTotal>
+    <l4slotsUsed>0</l4slotsUsed>
+    <l5slotsTotal>0</l5slotsTotal>
+    <l5slotsUsed>0</l5slotsUsed>
+    <l6slotsTotal>0</l6slotsTotal>
+    <l6slotsUsed>0</l6slotsUsed>
+    <l7slotsTotal>0</l7slotsTotal>
+    <l7slotsUsed>0</l7slotsUsed>
+    <l8slotsTotal>0</l8slotsTotal>
+    <l8slotsUsed>0</l8slotsUsed>
+    <l9slotsTotal>0</l9slotsTotal>
+    <l9slotsUsed>0</l9slotsUsed>
+</stats>
+<inventory>
+    <animal type='mount'>
+        <name>Cavallo (Ruthilia)</name>
+        <description>Un cavallo tascabile</description>
+    </animal>
+    <weapon>
+        <name>Falcetto</name>
+        <description>Falcetto da battaglia</description>
+    </weapon>
+</inventory>
+<spells>
+    <spell>
+        <name>mmm</name>
+        <level></level>
+        <description>mmm</description>
+        <effects>
+            <effect>mmm</effect>
+        </effects>
+    </spell>
+</spells>
+</all>
