@@ -86,6 +86,8 @@ int level = 2;
 
 String nomePersonaggio = 'Riven Gudsen';
 
+List<String> loadedStats = [];
+
 Inventory inventory = Inventory();
 
 SpellBook spellBook = SpellBook();
@@ -778,6 +780,13 @@ class _MyAppState extends State<MyApp> {
 void loadCharacter() {
   final file = File('character01.xml');
   final document = XmlDocument.parse(file.readAsStringSync());
+
+  for(int i = 0; i < keys.length; i++){
+    loadedStats.add(detag(document.findAllElements(keys[i]).toList().toString(), keys[i]));
+  }
+
+  debugPrint(loadedStats.toString());
+
   final List<XmlElement> spellTags = document.findAllElements('spell').toList();
 
   for (int i = 0; i < spellTags.length; i++) {
@@ -788,7 +797,7 @@ void loadCharacter() {
     String range =
         detag(spellTags[i].findAllElements('range').toString(), 'range');
     String activation = detag(
-        spellTags[i].findAllElements('activation').toString(), 'activation');
+        spellTags[i].findAllElements('active').toString(), 'active');
     String duration =
         detag(spellTags[i].findAllElements('duration').toString(), 'duration');
     String description = detag(
@@ -863,6 +872,8 @@ void loadCharacter() {
     Weapon weaponTemp = Weapon(name, number, description, damage, bonus);
     inventory.weapons.add(weaponTemp);
   }
+
+
 }
 
 /*
@@ -907,12 +918,12 @@ class Spell {
   String name = '';
   int level = 0;
   String range = '';
-  String activation = '';
+  bool activation = false;
   String duration = '';
   String description = '';
   String effect = '';
 
-  Spell(String name_, int level_, String range_, String activation_,
+  Spell(String name_, int level_, String range_, bool activation_,
       String duration_, String description_, String effect_) {
     name = name_;
     level = level_;
@@ -934,7 +945,7 @@ class Item {
   int number = 0;
   String description = '';
 
-  Item(String name_, int number_, String description_) {
+  Item(String name_, int number_, String description_, bool priority_) {
     name = name_;
     number = number_;
     description = description_;
@@ -951,7 +962,7 @@ class Animal {
   int number = 0;
   String description = '';
 
-  Animal(String name_, int number_, String description_) {
+  Animal(String name_, int number_, String description_, bool priority_) {
     name = name_;
     number = number_;
     description = description_;
@@ -968,7 +979,7 @@ class Consumable {
   int number = 0;
   String description = '';
 
-  Consumable(String name_, int number_, String description_) {
+  Consumable(String name_, int number_, String description_, bool priority_) {
     name = name_;
     number = number_;
     description = description_;
@@ -988,7 +999,7 @@ class Weapon {
   String bonus = '';
 
   Weapon(String name_, int number_, String description_, String damage_,
-      String bonus_) {
+      String bonus_, bool priority_) {
     name = name_;
     number = number_;
     description = description_;

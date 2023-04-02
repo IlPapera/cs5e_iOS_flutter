@@ -74,6 +74,7 @@
         <name>Cavallo (Ruthilia)</name>
         <number>1</number>
         <description>Un cavallo tascabile</description>
+        <priority></priority>
     </animal>
     <weapon>
         <name>Falcetto</name>
@@ -81,26 +82,31 @@
         <damage>1d4 T</damage>
         <bonus>+1</bonus>
         <description>Falcetto da battaglia</description>
+        <priority></priority>
     </weapon>
     <consumable>
         <name>Candelotto runico</name>
         <number>5</number>
         <description>Candelotto di dinamite con delle strane rune sul corpo</description>
+        <priority></priority>
     </consumable>
     <consumable>
         <name>Razione giornaliera</name>
         <number>8</number>
-        <description>Candelotto di dinamite con delle strane rune sul corpo</description>
+        <description>Una razione giornaliera</description>
+        <priority></priority>
     </consumable>
     <item>
         <name>Roccia a forma di occhio</name>
         <number>1</number>
-        <description>mas</description>
+        <description></description>
+        <priority></priority>
     </item>
     <item>
         <name>Occhio a forma di roccia</name>
         <number>1</number>
-        <description>mas</description>
+        <description></description>
+        <priority></priority>
     </item>
 </inventory>
 
