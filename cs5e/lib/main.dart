@@ -243,17 +243,23 @@ Widget attributeBoxGenerator(
                         flex: 5,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(stats[0]),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(stats[0]),
+                          ),
                         ),
                       ),
                       Expanded(
                         flex: 1,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            valueToSignedString(modifierFromValue(value) +
-                                profBonusFromLevel(level) *
-                                    int.parse(profs[0])),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              valueToSignedString(modifierFromValue(value) +
+                                  profBonusFromLevel(level) *
+                                      int.parse(profs[0])),
+                            ),
                           ),
                         ),
                       ),
@@ -272,19 +278,26 @@ Widget attributeBoxGenerator(
                         flex: 5,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(stats[1]),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(stats[1] == '' ? ' ' : stats[1]),
+                          ),
                         ),
                       ),
                       Expanded(
                         flex: 1,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            profs[1] == ''
-                                ? ''
-                                : valueToSignedString(modifierFromValue(value) +
-                                    profBonusFromLevel(level) *
-                                        int.parse(profs[1])),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              profs[1] == ''
+                                  ? ' '
+                                  : valueToSignedString(
+                                      modifierFromValue(value) +
+                                          profBonusFromLevel(level) *
+                                              int.parse(profs[1])),
+                            ),
                           ),
                         ),
                       ),
@@ -299,19 +312,26 @@ Widget attributeBoxGenerator(
                         flex: 5,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(stats[2]),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(stats[2] == '' ? ' ' : stats[2]),
+                          ),
                         ),
                       ),
                       Expanded(
                         flex: 1,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            profs[2] == ''
-                                ? ''
-                                : valueToSignedString(modifierFromValue(value) +
-                                    profBonusFromLevel(level) *
-                                        int.parse(profs[2])),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              profs[2] == ''
+                                  ? ' '
+                                  : valueToSignedString(
+                                      modifierFromValue(value) +
+                                          profBonusFromLevel(level) *
+                                              int.parse(profs[2])),
+                            ),
                           ),
                         ),
                       ),
@@ -326,19 +346,26 @@ Widget attributeBoxGenerator(
                         flex: 5,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(stats[3]),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(stats[3] == '' ? ' ' : stats[3]),
+                          ),
                         ),
                       ),
                       Expanded(
                         flex: 1,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            profs[3] == ''
-                                ? ''
-                                : valueToSignedString(modifierFromValue(value) +
-                                    profBonusFromLevel(level) *
-                                        int.parse(profs[3])),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              profs[3] == ''
+                                  ? ' '
+                                  : valueToSignedString(
+                                      modifierFromValue(value) +
+                                          profBonusFromLevel(level) *
+                                              int.parse(profs[3])),
+                            ),
                           ),
                         ),
                       ),
@@ -353,19 +380,26 @@ Widget attributeBoxGenerator(
                         flex: 5,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(stats[4]),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(stats[4] == '' ? ' ' : stats[4]),
+                          ),
                         ),
                       ),
                       Expanded(
                         flex: 1,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            profs[4] == ''
-                                ? ''
-                                : valueToSignedString(modifierFromValue(value) +
-                                    profBonusFromLevel(level) *
-                                        int.parse(profs[4])),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              profs[4] == ''
+                                  ? ' '
+                                  : valueToSignedString(
+                                      modifierFromValue(value) +
+                                          profBonusFromLevel(level) *
+                                              int.parse(profs[4])),
+                            ),
                           ),
                         ),
                       ),
@@ -380,19 +414,26 @@ Widget attributeBoxGenerator(
                         flex: 5,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(stats[5]),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(stats[5] == '' ? ' ' : stats[5]),
+                          ),
                         ),
                       ),
                       Expanded(
                         flex: 1,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            profs[5] == ''
-                                ? ''
-                                : valueToSignedString(modifierFromValue(value) +
-                                    profBonusFromLevel(level) *
-                                        int.parse(profs[5])),
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              profs[5] == ''
+                                  ? ' '
+                                  : valueToSignedString(
+                                      modifierFromValue(value) +
+                                          profBonusFromLevel(level) *
+                                              int.parse(profs[5])),
+                            ),
                           ),
                         ),
                       ),
@@ -407,6 +448,23 @@ Widget attributeBoxGenerator(
     ),
   );
   return returnBox;
+}
+
+/*
+..######...#######..##....##.########.########...#######..##..........########.....###....##....##.########.##......
+.##....##.##.....##.###...##....##....##.....##.##.....##.##..........##.....##...##.##...###...##.##.......##......
+.##.......##.....##.####..##....##....##.....##.##.....##.##..........##.....##..##...##..####..##.##.......##......
+.##.......##.....##.##.##.##....##....########..##.....##.##..........########..##.....##.##.##.##.######...##......
+.##.......##.....##.##..####....##....##...##...##.....##.##..........##........#########.##..####.##.......##......
+.##....##.##.....##.##...###....##....##....##..##.....##.##..........##........##.....##.##...###.##.......##......
+..######...#######..##....##....##....##.....##..#######..########....##........##.....##.##....##.########.########
+*/
+
+Widget controlPanelGenerator() {
+  return Padding(
+    padding: EdgeInsets.all(8.0),
+    child: Text('WIP'),
+  );
 }
 
 /*
@@ -433,6 +491,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     List<Widget> attributes = [];
     List<Widget> quickMenus = [];
+
+    Widget controlPanel = controlPanelGenerator();
 
     inventory.inventoryOrder();
     spellBook.spellsOrder();
@@ -561,10 +621,14 @@ class _MyAppState extends State<MyApp> {
             flex: 6,
             child: Column(
               children: [
-                const Expanded(
+                Expanded(
                   flex: 1,
                   child: Card(
-                    child: Text('random'),
+                    child: FractionallySizedBox(
+                      heightFactor: 1,
+                      widthFactor: 1,
+                      child: controlPanel,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -781,8 +845,9 @@ void loadCharacter() {
   final file = File('character01.xml');
   final document = XmlDocument.parse(file.readAsStringSync());
 
-  for(int i = 0; i < keys.length; i++){
-    loadedStats.add(detag(document.findAllElements(keys[i]).toList().toString(), keys[i]));
+  for (int i = 0; i < keys.length; i++) {
+    loadedStats.add(
+        detag(document.findAllElements(keys[i]).toList().toString(), keys[i]));
   }
 
   debugPrint(loadedStats.toString());
@@ -796,8 +861,8 @@ void loadCharacter() {
         detag(spellTags[i].findAllElements('level').toString(), 'level'));
     String range =
         detag(spellTags[i].findAllElements('range').toString(), 'range');
-    String activation = detag(
-        spellTags[i].findAllElements('active').toString(), 'active');
+    int active = int.parse(
+        detag(spellTags[i].findAllElements('active').toString(), 'active'));
     String duration =
         detag(spellTags[i].findAllElements('duration').toString(), 'duration');
     String description = detag(
@@ -806,8 +871,8 @@ void loadCharacter() {
         detag(spellTags[i].findAllElements('effect').toString(), 'effect');
 
     Spell spellTemp =
-        Spell(name, level, range, activation, duration, description, effect);
-    spellBook.spells.add(spellTemp);
+        Spell(name, level, range, active, duration, description, effect);
+    spellBook.addSpell(spellTemp);
   }
 
   final List<XmlElement> itemTags = document.findAllElements('item').toList();
@@ -818,9 +883,11 @@ void loadCharacter() {
         detag(itemTags[i].findAllElements('number').toString(), 'number'));
     String description = detag(
         itemTags[i].findAllElements('description').toString(), 'description');
+    int priority = int.parse(
+        detag(itemTags[i].findAllElements('priority').toString(), 'priority'));
 
-    Item itemTemp = Item(name, number, description);
-    inventory.items.add(itemTemp);
+    Item itemTemp = Item(name, number, description, priority);
+    inventory.addItem(itemTemp);
   }
 
   final List<XmlElement> animalTags =
@@ -833,9 +900,11 @@ void loadCharacter() {
         detag(animalTags[i].findAllElements('number').toString(), 'number'));
     String description = detag(
         animalTags[i].findAllElements('description').toString(), 'description');
+    int priority = int.parse(
+        detag(itemTags[i].findAllElements('priority').toString(), 'priority'));
 
-    Animal animalTemp = Animal(name, number, description);
-    inventory.animals.add(animalTemp);
+    Animal animalTemp = Animal(name, number, description, priority);
+    inventory.addAnimals(animalTemp);
   }
 
   final List<XmlElement> consumableTags =
@@ -849,9 +918,11 @@ void loadCharacter() {
     String description = detag(
         consumableTags[i].findAllElements('description').toString(),
         'description');
+    int priority = int.parse(
+        detag(itemTags[i].findAllElements('priority').toString(), 'priority'));
 
-    Consumable consumableTemp = Consumable(name, number, description);
-    inventory.consumables.add(consumableTemp);
+    Consumable consumableTemp = Consumable(name, number, description, priority);
+    inventory.addConsumable(consumableTemp);
   }
 
   final List<XmlElement> weaponTags =
@@ -868,12 +939,13 @@ void loadCharacter() {
         detag(weaponTags[i].findAllElements('damage').toString(), 'damage');
     String bonus =
         detag(weaponTags[i].findAllElements('bonus').toString(), 'bonus');
+    int priority = int.parse(detag(
+        weaponTags[i].findAllElements('priority').toString(), 'priority'));
 
-    Weapon weaponTemp = Weapon(name, number, description, damage, bonus);
-    inventory.weapons.add(weaponTemp);
+    Weapon weaponTemp =
+        Weapon(name, number, description, damage, bonus, priority);
+    inventory.addWeapon(weaponTemp);
   }
-
-
 }
 
 /*
@@ -915,146 +987,206 @@ String valueToSignedString(int value) {
 */
 
 class Spell {
-  String name = '';
-  int level = 0;
-  String range = '';
-  bool activation = false;
-  String duration = '';
-  String description = '';
-  String effect = '';
+  String _name = '';
+  int _level = 0;
+  String _range = '';
+  int _active = 0;
+  String _duration = '';
+  String _description = '';
+  String _effect = '';
 
-  Spell(String name_, int level_, String range_, bool activation_,
-      String duration_, String description_, String effect_) {
-    name = name_;
-    level = level_;
-    range = range_;
-    activation = activation_;
-    duration = duration_;
-    description = description_;
-    effect = effect_;
+  Spell(String name_, int level_, String range_, int active_, String duration_,
+      String description_, String effect_) {
+    _name = name_;
+    _level = level_;
+    _range = range_;
+    _active = active_;
+    _duration = duration_;
+    _description = description_;
+    _effect = effect_;
   }
 
   @override
   String toString() {
-    return '$name, $level, $range, $activation, $duration, $description, $effect';
+    return '$_name, $_level, $_range, $_active, $_duration, $_description, $_effect';
   }
 }
 
 class Item {
-  String name = '';
-  int number = 0;
-  String description = '';
+  String _name = '';
+  int _number = 0;
+  String _description = '';
+  int _priority = 0;
 
-  Item(String name_, int number_, String description_, bool priority_) {
-    name = name_;
-    number = number_;
-    description = description_;
+  Item(String name_, int number_, String description_, int priority_) {
+    _name = name_;
+    _number = number_;
+    _description = description_;
+    _priority = priority_;
   }
 
   @override
   String toString() {
-    return '$name, $number, $description';
+    return '$_name, $_number, $_description, $_priority';
   }
 }
 
 class Animal {
-  String name = '';
-  int number = 0;
-  String description = '';
+  String _name = '';
+  int _number = 0;
+  String _description = '';
+  int _priority = 0;
 
-  Animal(String name_, int number_, String description_, bool priority_) {
-    name = name_;
-    number = number_;
-    description = description_;
+  Animal(String name_, int number_, String description_, int priority_) {
+    _name = name_;
+    _number = number_;
+    _description = description_;
+    _priority = priority_;
   }
 
   @override
   String toString() {
-    return '$name, $number, $description';
+    return '$_name, $_number, $_description, $_priority';
   }
 }
 
 class Consumable {
-  String name = '';
-  int number = 0;
-  String description = '';
+  String _name = '';
+  int _number = 0;
+  String _description = '';
+  int _priority = 0;
 
-  Consumable(String name_, int number_, String description_, bool priority_) {
-    name = name_;
-    number = number_;
-    description = description_;
+  Consumable(String name_, int number_, String description_, int priority_) {
+    _name = name_;
+    _number = number_;
+    _description = description_;
+    _priority = priority_;
   }
 
   @override
   String toString() {
-    return '$name, $number, $description';
+    return '$_name, $_number, $_description, $_priority';
   }
 }
 
 class Weapon {
-  String name = '';
-  int number = 0;
-  String description = '';
-  String damage = '';
-  String bonus = '';
+  String _name = '';
+  int _number = 0;
+  String _description = '';
+  String _damage = '';
+  String _bonus = '';
+  int _priority = 0;
 
   Weapon(String name_, int number_, String description_, String damage_,
-      String bonus_, bool priority_) {
-    name = name_;
-    number = number_;
-    description = description_;
-    damage = damage_;
-    bonus = bonus_;
+      String bonus_, int priority_) {
+    _name = name_;
+    _number = number_;
+    _description = description_;
+    _damage = damage_;
+    _bonus = bonus_;
+    _priority = priority_;
   }
 
   @override
   String toString() {
-    return '$name, $number, $description, $damage, $bonus';
+    return '$_name, $_number, $_description, $_damage, $_bonus, $_priority';
   }
 }
 
 class Inventory {
-  List<Item> items = [];
-  List<Consumable> consumables = [];
-  List<Weapon> weapons = [];
-  List<Animal> animals = [];
+  List<Item> _items = [];
+  List<Consumable> _consumables = [];
+  List<Weapon> _weapons = [];
+  List<Animal> _animals = [];
 
   void inventoryOrder() {
-    //TODO to reorder the inventory in alphabetical order
+    _inventoryOrderItems();
+    _inventoryOrderConsumables();
+    _inventoryOrderWeapons();
+    _inventoryOrderAnimals();
+  }
+
+  void _inventoryOrderItems() {
+    //TODO
+  }
+  void _inventoryOrderConsumables() {
+    //TODO
+  }
+  void _inventoryOrderWeapons() {
+    //TODO
+  }
+  void _inventoryOrderAnimals() {
+    //TODO
+  }
+
+  void addItem(Item item) {
+    _items.add(item);
+    _inventoryOrderItems();
+  }
+
+  void addConsumable(Consumable consumable) {
+    _consumables.add(consumable);
+    _inventoryOrderConsumables();
+  }
+
+  void addWeapon(Weapon weapon) {
+    _weapons.add(weapon);
+    _inventoryOrderWeapons();
+  }
+
+  void addAnimals(Animal animal) {
+    _animals.add(animal);
+    _inventoryOrderAnimals();
   }
 
   @override
   String toString() {
     String total = '';
 
-    for (int i = 0; i < items.length; i++) {
-      total += '${items[i].toString()}\n';
+    for (int i = 0; i < _items.length; i++) {
+      total += '${_items[i].toString()}\n';
     }
 
     total += '\n';
 
-    for (int i = 0; i < consumables.length; i++) {
-      total += '${consumables[i].toString()}\n';
+    for (int i = 0; i < _consumables.length; i++) {
+      total += '${_consumables[i].toString()}\n';
     }
 
     total += '\n';
 
-    for (int i = 0; i < weapons.length; i++) {
-      total += '${weapons[i].toString()}\n';
+    for (int i = 0; i < _weapons.length; i++) {
+      total += '${_weapons[i].toString()}\n';
     }
 
     total += '\n';
 
-    for (int i = 0; i < animals.length; i++) {
-      total += '${animals[i].toString()}\n';
+    for (int i = 0; i < _animals.length; i++) {
+      total += '${_animals[i].toString()}\n';
     }
 
     return total;
   }
+
+  List<Item> getItems() {
+    return _items;
+  }
+
+  List<Consumable> getConsumables() {
+    return _consumables;
+  }
+
+  List<Weapon> getWeapons() {
+    return _weapons;
+  }
+
+  List<Animal> getAnimals() {
+    return _animals;
+  }
 }
 
 class SpellBook {
-  List<Spell> spells = [];
+  List<Spell> _spells = [];
 
   void spellsOrder() {
     //TODO to reorder the spells in active order, then level, then alphabetical order
@@ -1064,9 +1196,17 @@ class SpellBook {
   String toString() {
     String total = '';
 
-    for (int i = 0; i < spells.length; i++) {
-      total += '${spells[i].toString()}\n';
+    for (int i = 0; i < _spells.length; i++) {
+      total += '${_spells[i].toString()}\n';
     }
     return total;
+  }
+
+  void addSpell(Spell spell) {
+    _spells.add(spell);
+  }
+
+  List<Spell> getSpells() {
+    return _spells;
   }
 }
