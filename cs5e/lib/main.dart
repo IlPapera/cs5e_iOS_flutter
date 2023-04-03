@@ -131,31 +131,26 @@ Widget quickInventoryGenerator(String titleBox, List<Widget> items) {
   Widget returnBox;
   returnBox = Expanded(
     flex: 1,
-    child: Card(
+    child: Card(child: Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
           Expanded(
             flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FittedBox(
+            child: FittedBox(
                 fit: BoxFit.contain,
                 child: Text(titleBox),
               ),
-            ),
           ),
           const Divider(),
           Expanded(
             flex: 5,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 7),
-              child: ListView(
-                children: data50,
-              ),
+            child: ListView(
+              children: data50,
             ),
           )
         ],
-      ),
+      ),),
     ),
   );
 
@@ -463,7 +458,150 @@ Widget attributeBoxGenerator(
 Widget controlPanelGenerator() {
   return Padding(
     padding: EdgeInsets.all(8.0),
-    child: Text('WIP'),
+    child: Row(
+      children: [
+        Expanded(
+          flex: 20,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 6,
+                  child: Text('WIP'),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Divider(),
+                ),
+                Expanded(
+                  flex: 6,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 6,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 6,
+                              child: Text('WIP'),
+                            ),
+                            Expanded(
+                              flex: 6,
+                              child: Divider(),
+                            ),
+                            Expanded(
+                              flex: 6,
+                              child: Text('WIP'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      VerticalDivider(),
+                      Expanded(
+                        flex: 6,
+                        child: Text('WIP'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: VerticalDivider(),
+        ),
+        Expanded(
+          flex: 20,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 6,
+                  child: Text('WIP'),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Divider(),
+                ),
+                Expanded(
+                  flex: 6,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 6,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 6,
+                              child: Text('WIP'),
+                            ),
+                            Expanded(
+                              flex: 6,
+                              child: Divider(),
+                            ),
+                            Expanded(
+                              flex: 6,
+                              child: Text('WIP'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      VerticalDivider(),
+                      Expanded(
+                        flex: 6,
+                        child: Text('WIP'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: VerticalDivider(),
+        ),
+        Expanded(
+          flex: 20,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 6,
+                  child: Text('WIP'),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Divider(),
+                ),
+                Expanded(
+                  flex: 6,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 6,
+                        child: Text('WIP'),
+                      ),
+                      VerticalDivider(),
+                      Expanded(
+                        flex: 6,
+                        child: Text('WIP'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
   );
 }
 
