@@ -590,12 +590,27 @@ Widget controlPanelGenerator() {
                     children: [
                       Expanded(
                         flex: 6,
-                        child: controlPanelWidgets[9],
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 6,
+                              child: controlPanelWidgets[9],
+                            ),
+                            Expanded(
+                              flex: 6,
+                              child: Divider(),
+                            ),
+                            Expanded(
+                              flex: 6,
+                              child: controlPanelWidgets[10],
+                            ),
+                          ],
+                        ),
                       ),
                       VerticalDivider(),
                       Expanded(
                         flex: 6,
-                        child: controlPanelWidgets[10],
+                        child: controlPanelWidgets[11],
                       ),
                     ],
                   ),
@@ -637,17 +652,161 @@ class _MyAppState extends State<MyApp> {
     inventory.inventoryOrder();
     spellBook.spellsOrder();
 
-    controlPanelWidgets.add(Text('0'));
-    controlPanelWidgets.add(Text('1'));
-    controlPanelWidgets.add(Text('2'));
-    controlPanelWidgets.add(Text('3'));
-    controlPanelWidgets.add(Text('4'));
-    controlPanelWidgets.add(Text('5'));
-    controlPanelWidgets.add(Text('6'));
-    controlPanelWidgets.add(Text('7'));
-    controlPanelWidgets.add(Text('8'));
-    controlPanelWidgets.add(Text('9'));
-    controlPanelWidgets.add(Text('10'));
+    controlPanelWidgets.add(
+      Card(
+        child: GestureDetector(
+          onTap: (){
+            pressedFunctionHP();
+          },
+          child: FractionallySizedBox(
+            heightFactor: 1,
+            widthFactor: 1,
+            child: Text('0'),
+          ),
+        ),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: Text('1'),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: Text('2'),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: Text('3'),
+      ),
+    );
+    controlPanelWidgets.add(
+      Card(
+        child: GestureDetector(
+          onTap: (){
+            pressedFunctionHP();
+          },
+          child: FractionallySizedBox(
+            heightFactor: 1,
+            widthFactor: 1,
+            child: Text('4'),
+          ),
+        ),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: Text('5'),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: Text('6'),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: Text('7'),
+      ),
+    );
+    controlPanelWidgets.add(
+      Card(
+        child: GestureDetector(
+          onTap: (){
+            pressedFunctionHP();
+          },
+          child: FractionallySizedBox(
+            heightFactor: 1,
+            widthFactor: 1,
+            child: Text('8'),
+          ),
+        ),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: Card(
+          child: TextButton(
+            onPressed: () {
+              //TODO funzioni di premuta bottoni
+            },
+            child: Text(
+              '9',
+              style: const TextStyle(color: Colors.white), 
+            ),
+          ),
+        ),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: Text('10'),
+      ),
+    );
+    controlPanelWidgets.add(
+      Card(
+        child: GestureDetector(
+          onTap: (){
+            pressedFunctionHP();
+          },
+          child: FractionallySizedBox(
+            heightFactor: 1,
+            widthFactor: 1,
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Text('11'),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Text('11'),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Text('11'),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Text('11'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
 
     Widget controlPanel = controlPanelGenerator();
 
@@ -1424,4 +1583,18 @@ class SpellBook {
   List<Spell> getSpells() {
     return _spells;
   }
+}
+
+/*
+.########..##.....##.########.########..#######..##....##....##.....##.########.########.##.....##..#######..########...######.
+.##.....##.##.....##....##.......##....##.....##.###...##....###...###.##..........##....##.....##.##.....##.##.....##.##....##
+.##.....##.##.....##....##.......##....##.....##.####..##....####.####.##..........##....##.....##.##.....##.##.....##.##......
+.########..##.....##....##.......##....##.....##.##.##.##....##.###.##.######......##....#########.##.....##.##.....##..######.
+.##.....##.##.....##....##.......##....##.....##.##..####....##.....##.##..........##....##.....##.##.....##.##.....##.......##
+.##.....##.##.....##....##.......##....##.....##.##...###....##.....##.##..........##....##.....##.##.....##.##.....##.##....##
+.########...#######.....##.......##.....#######..##....##....##.....##.########....##....##.....##..#######..########...######.
+*/
+
+void pressedFunctionHP(){
+  debugPrint('\nmammt\n');
 }
