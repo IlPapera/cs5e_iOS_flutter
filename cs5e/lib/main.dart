@@ -82,6 +82,8 @@ final List<String> keys = [
 
 List<Widget> data50 = [];
 
+List<Widget> controlPanelWidgets = [];
+
 int level = 2;
 
 String nomePersonaggio = 'Riven Gudsen';
@@ -470,7 +472,7 @@ Widget controlPanelGenerator() {
               children: [
                 Expanded(
                   flex: 6,
-                  child: Text('0'),
+                  child: controlPanelWidgets[0],
                 ),
                 Expanded(
                   flex: 1,
@@ -486,7 +488,7 @@ Widget controlPanelGenerator() {
                           children: [
                             Expanded(
                               flex: 6,
-                              child: Text('1'),
+                              child: controlPanelWidgets[1],
                             ),
                             Expanded(
                               flex: 6,
@@ -494,7 +496,7 @@ Widget controlPanelGenerator() {
                             ),
                             Expanded(
                               flex: 6,
-                              child: Text('2'),
+                              child: controlPanelWidgets[2],
                             ),
                           ],
                         ),
@@ -502,7 +504,7 @@ Widget controlPanelGenerator() {
                       VerticalDivider(),
                       Expanded(
                         flex: 6,
-                        child: Text('3'),
+                        child: controlPanelWidgets[3],
                       ),
                     ],
                   ),
@@ -523,7 +525,7 @@ Widget controlPanelGenerator() {
               children: [
                 Expanded(
                   flex: 6,
-                  child: Text('4'),
+                  child: controlPanelWidgets[4],
                 ),
                 Expanded(
                   flex: 1,
@@ -539,7 +541,7 @@ Widget controlPanelGenerator() {
                           children: [
                             Expanded(
                               flex: 6,
-                              child: Text('5'),
+                              child: controlPanelWidgets[5],
                             ),
                             Expanded(
                               flex: 6,
@@ -547,7 +549,7 @@ Widget controlPanelGenerator() {
                             ),
                             Expanded(
                               flex: 6,
-                              child: Text('6'),
+                              child: controlPanelWidgets[6],
                             ),
                           ],
                         ),
@@ -555,7 +557,7 @@ Widget controlPanelGenerator() {
                       VerticalDivider(),
                       Expanded(
                         flex: 6,
-                        child: Text('7'),
+                        child: controlPanelWidgets[7],
                       ),
                     ],
                   ),
@@ -576,7 +578,7 @@ Widget controlPanelGenerator() {
               children: [
                 Expanded(
                   flex: 6,
-                  child: Text('8'),
+                  child: controlPanelWidgets[8],
                 ),
                 Expanded(
                   flex: 1,
@@ -588,12 +590,12 @@ Widget controlPanelGenerator() {
                     children: [
                       Expanded(
                         flex: 6,
-                        child: Text('9'),
+                        child: controlPanelWidgets[9],
                       ),
                       VerticalDivider(),
                       Expanded(
                         flex: 6,
-                        child: Text('10'),
+                        child: controlPanelWidgets[10],
                       ),
                     ],
                   ),
@@ -632,10 +634,22 @@ class _MyAppState extends State<MyApp> {
     List<Widget> attributes = [];
     List<Widget> quickMenus = [];
 
-    Widget controlPanel = controlPanelGenerator();
-
     inventory.inventoryOrder();
     spellBook.spellsOrder();
+
+    controlPanelWidgets.add(Text('0'));
+    controlPanelWidgets.add(Text('1'));
+    controlPanelWidgets.add(Text('2'));
+    controlPanelWidgets.add(Text('3'));
+    controlPanelWidgets.add(Text('4'));
+    controlPanelWidgets.add(Text('5'));
+    controlPanelWidgets.add(Text('6'));
+    controlPanelWidgets.add(Text('7'));
+    controlPanelWidgets.add(Text('8'));
+    controlPanelWidgets.add(Text('9'));
+    controlPanelWidgets.add(Text('10'));
+
+    Widget controlPanel = controlPanelGenerator();
 
     attributes.add(
       attributeBoxGenerator(
@@ -907,6 +921,65 @@ class _MyAppState extends State<MyApp> {
     );
 
 /*
+..######..########.########.########.####.##....##..######....######.
+.##....##.##..........##.......##.....##..###...##.##....##..##....##
+.##.......##..........##.......##.....##..####..##.##........##......
+..######..######......##.......##.....##..##.##.##.##...####..######.
+.......##.##..........##.......##.....##..##..####.##....##........##
+.##....##.##..........##.......##.....##..##...###.##....##..##....##
+..######..########....##.......##....####.##....##..######....######.
+*/
+
+    Widget settingsPage = Scaffold(
+      body: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Card(
+                    color: Colors.green,
+                    child: Container(
+                      margin: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
+                      height: 100,
+                      width: 100,
+                      child: const Text('settings'),
+                      //decoration: BoxDecoration(shape: BoxShape.circle),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Card(
+                    color: Colors.green,
+                    child: Container(
+                      margin: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
+                      height: 100,
+                      width: 100,
+                      child: const Text('settings'),
+                      //decoration: BoxDecoration(shape: BoxShape.circle),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+/*
 ..######...########.##....##.########.########.....###....##.............###....########..########.
 .##....##..##.......###...##.##.......##.....##...##.##...##............##.##...##.....##.##.....##
 .##........##.......####..##.##.......##.....##..##...##..##...........##...##..##.....##.##.....##
@@ -920,6 +993,7 @@ class _MyAppState extends State<MyApp> {
       homePage,
       inventoryPage,
       spellsPage,
+      settingsPage,
     ];
 
     final barItems = <BottomNavigationBarItem>[
@@ -938,6 +1012,11 @@ class _MyAppState extends State<MyApp> {
           icon: Icon(Icons.auto_fix_high_rounded, color: Colors.grey),
           label: 'Spells',
           activeIcon: Icon(Icons.auto_fix_high_rounded, color: Colors.grey)),
+      const BottomNavigationBarItem(
+          tooltip: 'Settings',
+          icon: Icon(Icons.settings_rounded, color: Colors.grey),
+          label: 'Settings',
+          activeIcon: Icon(Icons.settings_rounded, color: Colors.grey)),
     ];
 
     final bottNavBar = BottomNavigationBar(
@@ -957,10 +1036,6 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.system,
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.grey[650],
-          title: Text(nomePersonaggio),
-        ),
         body: Container(
           padding: const EdgeInsets.all(15),
           child: tabPages[currIndex],
