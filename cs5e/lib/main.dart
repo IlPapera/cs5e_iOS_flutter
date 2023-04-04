@@ -131,26 +131,28 @@ Widget quickInventoryGenerator(String titleBox, List<Widget> items) {
   Widget returnBox;
   returnBox = Expanded(
     flex: 1,
-    child: Card(child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Expanded(
-            flex: 1,
-            child: FittedBox(
+    child: Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: FittedBox(
                 fit: BoxFit.contain,
                 child: Text(titleBox),
               ),
-          ),
-          const Divider(),
-          Expanded(
-            flex: 5,
-            child: ListView(
-              children: data50,
             ),
-          )
-        ],
-      ),),
+            const Divider(),
+            Expanded(
+              flex: 5,
+              child: ListView(
+                children: data50,
+              ),
+            )
+          ],
+        ),
+      ),
     ),
   );
 
@@ -468,7 +470,7 @@ Widget controlPanelGenerator() {
               children: [
                 Expanded(
                   flex: 6,
-                  child: Text('WIP'),
+                  child: Text('0'),
                 ),
                 Expanded(
                   flex: 1,
@@ -484,7 +486,7 @@ Widget controlPanelGenerator() {
                           children: [
                             Expanded(
                               flex: 6,
-                              child: Text('WIP'),
+                              child: Text('1'),
                             ),
                             Expanded(
                               flex: 6,
@@ -492,7 +494,7 @@ Widget controlPanelGenerator() {
                             ),
                             Expanded(
                               flex: 6,
-                              child: Text('WIP'),
+                              child: Text('2'),
                             ),
                           ],
                         ),
@@ -500,7 +502,7 @@ Widget controlPanelGenerator() {
                       VerticalDivider(),
                       Expanded(
                         flex: 6,
-                        child: Text('WIP'),
+                        child: Text('3'),
                       ),
                     ],
                   ),
@@ -521,7 +523,7 @@ Widget controlPanelGenerator() {
               children: [
                 Expanded(
                   flex: 6,
-                  child: Text('WIP'),
+                  child: Text('4'),
                 ),
                 Expanded(
                   flex: 1,
@@ -537,7 +539,7 @@ Widget controlPanelGenerator() {
                           children: [
                             Expanded(
                               flex: 6,
-                              child: Text('WIP'),
+                              child: Text('5'),
                             ),
                             Expanded(
                               flex: 6,
@@ -545,7 +547,7 @@ Widget controlPanelGenerator() {
                             ),
                             Expanded(
                               flex: 6,
-                              child: Text('WIP'),
+                              child: Text('6'),
                             ),
                           ],
                         ),
@@ -553,7 +555,7 @@ Widget controlPanelGenerator() {
                       VerticalDivider(),
                       Expanded(
                         flex: 6,
-                        child: Text('WIP'),
+                        child: Text('7'),
                       ),
                     ],
                   ),
@@ -574,7 +576,7 @@ Widget controlPanelGenerator() {
               children: [
                 Expanded(
                   flex: 6,
-                  child: Text('WIP'),
+                  child: Text('8'),
                 ),
                 Expanded(
                   flex: 1,
@@ -586,12 +588,12 @@ Widget controlPanelGenerator() {
                     children: [
                       Expanded(
                         flex: 6,
-                        child: Text('WIP'),
+                        child: Text('9'),
                       ),
                       VerticalDivider(),
                       Expanded(
                         flex: 6,
-                        child: Text('WIP'),
+                        child: Text('10'),
                       ),
                     ],
                   ),
