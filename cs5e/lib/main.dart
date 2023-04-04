@@ -235,7 +235,7 @@ Widget attributeBoxGenerator(
             child: Column(
               children: [
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: Row(
                     children: [
                       Expanded(
@@ -270,7 +270,7 @@ Widget attributeBoxGenerator(
                   child: Divider(),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: Row(
                     children: [
                       Expanded(
@@ -304,7 +304,7 @@ Widget attributeBoxGenerator(
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: Row(
                     children: [
                       Expanded(
@@ -338,7 +338,7 @@ Widget attributeBoxGenerator(
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: Row(
                     children: [
                       Expanded(
@@ -372,7 +372,7 @@ Widget attributeBoxGenerator(
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: Row(
                     children: [
                       Expanded(
@@ -406,7 +406,7 @@ Widget attributeBoxGenerator(
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: Row(
                     children: [
                       Expanded(
@@ -471,7 +471,7 @@ Widget controlPanelGenerator() {
             child: Column(
               children: [
                 Expanded(
-                  flex: 6,
+                  flex: 20,
                   child: controlPanelWidgets[0],
                 ),
                 Expanded(
@@ -479,31 +479,34 @@ Widget controlPanelGenerator() {
                   child: Divider(),
                 ),
                 Expanded(
-                  flex: 6,
+                  flex: 30,
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 6,
+                        flex: 30,
                         child: Column(
                           children: [
                             Expanded(
-                              flex: 6,
+                              flex: 20,
                               child: controlPanelWidgets[1],
                             ),
                             Expanded(
-                              flex: 6,
+                              flex: 1,
                               child: Divider(),
                             ),
                             Expanded(
-                              flex: 6,
+                              flex: 20,
                               child: controlPanelWidgets[2],
                             ),
                           ],
                         ),
                       ),
-                      VerticalDivider(),
                       Expanded(
-                        flex: 6,
+                        flex: 1,
+                        child: VerticalDivider(),
+                      ),
+                      Expanded(
+                        flex: 20,
                         child: controlPanelWidgets[3],
                       ),
                     ],
@@ -524,7 +527,7 @@ Widget controlPanelGenerator() {
             child: Column(
               children: [
                 Expanded(
-                  flex: 6,
+                  flex: 20,
                   child: controlPanelWidgets[4],
                 ),
                 Expanded(
@@ -532,31 +535,34 @@ Widget controlPanelGenerator() {
                   child: Divider(),
                 ),
                 Expanded(
-                  flex: 6,
+                  flex: 30,
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 6,
+                        flex: 30,
                         child: Column(
                           children: [
                             Expanded(
-                              flex: 6,
+                              flex: 20,
                               child: controlPanelWidgets[5],
                             ),
                             Expanded(
-                              flex: 6,
+                              flex: 1,
                               child: Divider(),
                             ),
                             Expanded(
-                              flex: 6,
+                              flex: 20,
                               child: controlPanelWidgets[6],
                             ),
                           ],
                         ),
                       ),
-                      VerticalDivider(),
                       Expanded(
-                        flex: 6,
+                        flex: 1,
+                        child: VerticalDivider(),
+                      ),
+                      Expanded(
+                        flex: 20,
                         child: controlPanelWidgets[7],
                       ),
                     ],
@@ -577,7 +583,7 @@ Widget controlPanelGenerator() {
             child: Column(
               children: [
                 Expanded(
-                  flex: 6,
+                  flex: 20,
                   child: controlPanelWidgets[8],
                 ),
                 Expanded(
@@ -585,31 +591,34 @@ Widget controlPanelGenerator() {
                   child: Divider(),
                 ),
                 Expanded(
-                  flex: 6,
+                  flex: 30,
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 6,
+                        flex: 30,
                         child: Column(
                           children: [
                             Expanded(
-                              flex: 6,
+                              flex: 20,
                               child: controlPanelWidgets[9],
                             ),
                             Expanded(
-                              flex: 6,
+                              flex: 1,
                               child: Divider(),
                             ),
                             Expanded(
-                              flex: 6,
+                              flex: 20,
                               child: controlPanelWidgets[10],
                             ),
                           ],
                         ),
                       ),
-                      VerticalDivider(),
                       Expanded(
-                        flex: 6,
+                        flex: 1,
+                        child: VerticalDivider(),
+                      ),
+                      Expanded(
+                        flex: 20,
                         child: controlPanelWidgets[11],
                       ),
                     ],
@@ -737,18 +746,15 @@ class _MyAppState extends State<MyApp> {
       ),
     );
     controlPanelWidgets.add(
-      FractionallySizedBox(
-        heightFactor: 1,
-        widthFactor: 1,
-        child: Card(
-          child: TextButton(
-            onPressed: () {
-              //TODO funzioni di premuta bottoni
-            },
-            child: Text(
-              '9',
-              style: const TextStyle(color: Colors.white), 
-            ),
+      Card(
+        child: GestureDetector(
+          onTap: (){
+            pressedFunctionHP();
+          },
+          child: FractionallySizedBox(
+            heightFactor: 1,
+            widthFactor: 1,
+            child: Text('9'),
           ),
         ),
       ),
@@ -777,7 +783,14 @@ class _MyAppState extends State<MyApp> {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: Text('11'),
+                        child: FractionallySizedBox(
+                          heightFactor: 1,
+                          widthFactor: 1,
+                          child: Container(
+                            color: Color.fromRGBO(205, 127, 50, 1),
+                            child: Text(' '),
+                          ),
+                        ),
                       ),
                       Expanded(
                         flex: 1,
