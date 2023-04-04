@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:xml/xml.dart';
 import 'dart:io';
 
+final List<Color> colors = [
+  Color.fromRGBO(184, 115, 51, 1);
+  Color.fromRGBO(169, 169, 169, 1);
+  Color.fromRGBO(255, 215, 0, 1);
+  Color.fromRGBO(229, 228, 226, 1);
+];
+
 final List<String> attributeNames = [
   'Strength',
   'Dexterity',
@@ -783,18 +790,33 @@ class _MyAppState extends State<MyApp> {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: FractionallySizedBox(
-                          heightFactor: 1,
-                          widthFactor: 1,
-                          child: Container(
-                            color: Color.fromRGBO(205, 127, 50, 1),
-                            child: Text(' '),
-                          ),
+                        child: Stack(
+                          children: [
+                            FractionallySizedBox(
+                              heightFactor: 1,
+                              widthFactor: 1,
+                              child: Card(
+                                color: colors[0],
+                                child: Text(' '),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Expanded(
                         flex: 1,
-                        child: Text('11'),
+                        child: Stack(
+                          children: [
+                            FractionallySizedBox(
+                              heightFactor: 1,
+                              widthFactor: 1,
+                              child: Card(
+                                color: colors[2],
+                                child: Text(' '),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -805,11 +827,33 @@ class _MyAppState extends State<MyApp> {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: Text('11'),
+                        child: Stack(
+                          children: [
+                            FractionallySizedBox(
+                              heightFactor: 1,
+                              widthFactor: 1,
+                              child: Card(
+                                color: colors[1],
+                                child: Text(' '),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Expanded(
                         flex: 1,
-                        child: Text('11'),
+                        child: Stack(
+                          children: [
+                            FractionallySizedBox(
+                              heightFactor: 1,
+                              widthFactor: 1,
+                              child: Card(
+                                color: colors[3],
+                                child: Text(' '),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
