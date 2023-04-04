@@ -3,10 +3,10 @@ import 'package:xml/xml.dart';
 import 'dart:io';
 
 final List<Color> colors = [
-  Color.fromRGBO(184, 115, 51, 1);
-  Color.fromRGBO(169, 169, 169, 1);
-  Color.fromRGBO(255, 215, 0, 1);
-  Color.fromRGBO(229, 228, 226, 1);
+  Color.fromRGBO(184, 115, 51, 1),
+  Color.fromRGBO(169, 169, 169, 1),
+  Color.fromRGBO(255, 215, 0, 1),
+  Color.fromRGBO(229, 228, 226, 1),
 ];
 
 final List<String> attributeNames = [
@@ -478,7 +478,7 @@ Widget controlPanelGenerator() {
             child: Column(
               children: [
                 Expanded(
-                  flex: 20,
+                  flex: 30,
                   child: controlPanelWidgets[0],
                 ),
                 Expanded(
@@ -486,11 +486,11 @@ Widget controlPanelGenerator() {
                   child: Divider(),
                 ),
                 Expanded(
-                  flex: 30,
+                  flex: 40,
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 30,
+                        flex: 40,
                         child: Column(
                           children: [
                             Expanded(
@@ -513,7 +513,7 @@ Widget controlPanelGenerator() {
                         child: VerticalDivider(),
                       ),
                       Expanded(
-                        flex: 20,
+                        flex: 30,
                         child: controlPanelWidgets[3],
                       ),
                     ],
@@ -534,7 +534,7 @@ Widget controlPanelGenerator() {
             child: Column(
               children: [
                 Expanded(
-                  flex: 20,
+                  flex: 30,
                   child: controlPanelWidgets[4],
                 ),
                 Expanded(
@@ -542,11 +542,11 @@ Widget controlPanelGenerator() {
                   child: Divider(),
                 ),
                 Expanded(
-                  flex: 30,
+                  flex: 40,
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 30,
+                        flex: 40,
                         child: Column(
                           children: [
                             Expanded(
@@ -569,7 +569,7 @@ Widget controlPanelGenerator() {
                         child: VerticalDivider(),
                       ),
                       Expanded(
-                        flex: 20,
+                        flex: 30,
                         child: controlPanelWidgets[7],
                       ),
                     ],
@@ -590,7 +590,7 @@ Widget controlPanelGenerator() {
             child: Column(
               children: [
                 Expanded(
-                  flex: 20,
+                  flex: 30,
                   child: controlPanelWidgets[8],
                 ),
                 Expanded(
@@ -598,11 +598,11 @@ Widget controlPanelGenerator() {
                   child: Divider(),
                 ),
                 Expanded(
-                  flex: 30,
+                  flex: 40,
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 30,
+                        flex: 40,
                         child: Column(
                           children: [
                             Expanded(
@@ -625,7 +625,7 @@ Widget controlPanelGenerator() {
                         child: VerticalDivider(),
                       ),
                       Expanded(
-                        flex: 20,
+                        flex: 30,
                         child: controlPanelWidgets[11],
                       ),
                     ],
@@ -774,8 +774,7 @@ class _MyAppState extends State<MyApp> {
       ),
     );
     controlPanelWidgets.add(
-      Card(
-        child: GestureDetector(
+      GestureDetector(
           onTap: (){
             pressedFunctionHP();
           },
@@ -862,7 +861,6 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
         ),
-      ),
     );
 
     Widget controlPanel = controlPanelGenerator();
