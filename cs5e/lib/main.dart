@@ -105,30 +105,18 @@ final List<String> keys = [
   'weakness',
 ];
 
-final List<Color> colors = [
-  const Color.fromRGBO(184, 115, 51, 1),
-  const Color.fromRGBO(169, 169, 169, 1),
-  const Color.fromRGBO(255, 215, 0, 1),
-  const Color.fromRGBO(229, 228, 226, 1),
+const List<Color> colors = [
+  Color.fromRGBO(184, 115, 51, 1),
+  Color.fromRGBO(169, 169, 169, 1),
+  Color.fromRGBO(255, 215, 0, 1),
+  Color.fromRGBO(229, 228, 226, 1),
 ];
-
-List<Widget> data50 = [];
-
-List<Widget> controlPanelWidgets = [];
-
-String nomePersonaggio = 'Riven Gudsen';
 
 List<String> loadedStats = [];
 
-Inventory inventory = Inventory();
+List<Widget> data50 = [];
 
-SpellBook spellBook = SpellBook();
-
-List<String> statistics = [];
-
-List<Function> buttonFunctions = [];
-
-Color levelColor = const Color.fromRGBO(150, 150, 150, 1);
+const Color levelColor = Color.fromRGBO(150, 150, 150, 1);
 
 /*
 .##.....##....###....####.##....##
@@ -512,190 +500,6 @@ Widget attributeBoxGenerator(
 }
 
 /*
-..######...#######..##....##.########.########...#######..##..........########.....###....##....##.########.##......
-.##....##.##.....##.###...##....##....##.....##.##.....##.##..........##.....##...##.##...###...##.##.......##......
-.##.......##.....##.####..##....##....##.....##.##.....##.##..........##.....##..##...##..####..##.##.......##......
-.##.......##.....##.##.##.##....##....########..##.....##.##..........########..##.....##.##.##.##.######...##......
-.##.......##.....##.##..####....##....##...##...##.....##.##..........##........#########.##..####.##.......##......
-.##....##.##.....##.##...###....##....##....##..##.....##.##..........##........##.....##.##...###.##.......##......
-..######...#######..##....##....##....##.....##..#######..########....##........##.....##.##....##.########.########
-*/
-
-Widget controlPanelGenerator() {
-  return Padding(
-    padding: EdgeInsets.all(8.0),
-    child: Row(
-      children: [
-        Expanded(
-          flex: 20,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 30,
-                  child: controlPanelWidgets[0],
-                ),
-                const Expanded(
-                  flex: 1,
-                  child: Divider(),
-                ),
-                Expanded(
-                  flex: 40,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 40,
-                        child: Column(
-                          children: [
-                            Expanded(
-                              flex: 20,
-                              child: controlPanelWidgets[1],
-                            ),
-                            const Expanded(
-                              flex: 1,
-                              child: Divider(),
-                            ),
-                            Expanded(
-                              flex: 20,
-                              child: controlPanelWidgets[2],
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Expanded(
-                        flex: 1,
-                        child: VerticalDivider(),
-                      ),
-                      Expanded(
-                        flex: 30,
-                        child: controlPanelWidgets[3],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        const Expanded(
-          flex: 1,
-          child: VerticalDivider(),
-        ),
-        Expanded(
-          flex: 20,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 30,
-                  child: controlPanelWidgets[4],
-                ),
-                const Expanded(
-                  flex: 1,
-                  child: Divider(),
-                ),
-                Expanded(
-                  flex: 40,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 40,
-                        child: Column(
-                          children: [
-                            Expanded(
-                              flex: 20,
-                              child: controlPanelWidgets[5],
-                            ),
-                            const Expanded(
-                              flex: 1,
-                              child: Divider(),
-                            ),
-                            Expanded(
-                              flex: 20,
-                              child: controlPanelWidgets[6],
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Expanded(
-                        flex: 1,
-                        child: VerticalDivider(),
-                      ),
-                      Expanded(
-                        flex: 30,
-                        child: controlPanelWidgets[7],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        const Expanded(
-          flex: 1,
-          child: VerticalDivider(),
-        ),
-        Expanded(
-          flex: 20,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 30,
-                  child: controlPanelWidgets[8],
-                ),
-                const Expanded(
-                  flex: 1,
-                  child: Divider(),
-                ),
-                Expanded(
-                  flex: 40,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 40,
-                        child: Column(
-                          children: [
-                            Expanded(
-                              flex: 20,
-                              child: controlPanelWidgets[9],
-                            ),
-                            const Expanded(
-                              flex: 1,
-                              child: Divider(),
-                            ),
-                            Expanded(
-                              flex: 20,
-                              child: controlPanelWidgets[10],
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Expanded(
-                        flex: 1,
-                        child: VerticalDivider(),
-                      ),
-                      Expanded(
-                        flex: 30,
-                        child: controlPanelWidgets[11],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-/*
 .########..########..######...####.##....##.##....##.####.##....##..######..
 .##.....##.##.......##....##...##..###...##.###...##..##..###...##.##....##.
 .##.....##.##.......##.........##..####..##.####..##..##..####..##.##.......
@@ -715,23 +519,53 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int currIndex = 0;
 
+/*
+.########..##.....##.####.##.......########.
+.##.....##.##.....##..##..##.......##.....##
+.##.....##.##.....##..##..##.......##.....##
+.########..##.....##..##..##.......##.....##
+.##.....##.##.....##..##..##.......##.....##
+.##.....##.##.....##..##..##.......##.....##
+.########...#######..####.########.########.
+*/
+
   @override
   Widget build(BuildContext context) {
     debugPrint('\nBUILD CALL\n');
-    loadCharacter();
 
     List<Widget> attributes = [];
     List<Widget> quickMenus = [];
 
+    List<Widget> controlPanelWidgets = [];
+
+    Inventory inventory =
+        Inventory(loadItems(), loadConsumables(), loadWeapons(), loadAnimals());
+
+    SpellBook spellBook = SpellBook(loadSpells());
+
+    List<String> statistics = [];
+
     inventory.inventoryOrder();
     spellBook.spellsOrder();
 
-    buttonFunctions.add(pressedFunctionStrength);
-    buttonFunctions.add(pressedFunctionDexterity);
-    buttonFunctions.add(pressedFunctionConstitution);
-    buttonFunctions.add(pressedFunctionIntelligence);
-    buttonFunctions.add(pressedFunctionWisdom);
-    buttonFunctions.add(pressedFunctionCharisma);
+    List<Function> buttonFunctions = [
+      pressedFunctionStrength,
+      pressedFunctionDexterity,
+      pressedFunctionConstitution,
+      pressedFunctionIntelligence,
+      pressedFunctionWisdom,
+      pressedFunctionCharisma
+    ];
+
+/*
+..######...#######..##....##.########.########...#######..##..........########.....###....##....##.########.##......
+.##....##.##.....##.###...##....##....##.....##.##.....##.##..........##.....##...##.##...###...##.##.......##......
+.##.......##.....##.####..##....##....##.....##.##.....##.##..........##.....##..##...##..####..##.##.......##......
+.##.......##.....##.##.##.##....##....########..##.....##.##..........########..##.....##.##.##.##.######...##......
+.##.......##.....##.##..####....##....##...##...##.....##.##..........##........#########.##..####.##.......##......
+.##....##.##.....##.##...###....##....##....##..##.....##.##..........##........##.....##.##...###.##.......##......
+..######...#######..##....##....##....##.....##..#######..########....##........##.....##.##....##.########.########
+*/
 
     controlPanelWidgets.add(
       GestureDetector(
@@ -1046,8 +880,187 @@ class _MyAppState extends State<MyApp> {
       ),
     );
 
-    Widget controlPanel = controlPanelGenerator();
+    Widget controlPanel = Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 20,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 30,
+                    child: controlPanelWidgets[0],
+                  ),
+                  const Expanded(
+                    flex: 1,
+                    child: Divider(),
+                  ),
+                  Expanded(
+                    flex: 40,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 40,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 20,
+                                child: controlPanelWidgets[1],
+                              ),
+                              const Expanded(
+                                flex: 1,
+                                child: Divider(),
+                              ),
+                              Expanded(
+                                flex: 20,
+                                child: controlPanelWidgets[2],
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Expanded(
+                          flex: 1,
+                          child: VerticalDivider(),
+                        ),
+                        Expanded(
+                          flex: 30,
+                          child: controlPanelWidgets[3],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Expanded(
+            flex: 1,
+            child: VerticalDivider(),
+          ),
+          Expanded(
+            flex: 20,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 30,
+                    child: controlPanelWidgets[4],
+                  ),
+                  const Expanded(
+                    flex: 1,
+                    child: Divider(),
+                  ),
+                  Expanded(
+                    flex: 40,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 40,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 20,
+                                child: controlPanelWidgets[5],
+                              ),
+                              const Expanded(
+                                flex: 1,
+                                child: Divider(),
+                              ),
+                              Expanded(
+                                flex: 20,
+                                child: controlPanelWidgets[6],
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Expanded(
+                          flex: 1,
+                          child: VerticalDivider(),
+                        ),
+                        Expanded(
+                          flex: 30,
+                          child: controlPanelWidgets[7],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Expanded(
+            flex: 1,
+            child: VerticalDivider(),
+          ),
+          Expanded(
+            flex: 20,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 30,
+                    child: controlPanelWidgets[8],
+                  ),
+                  const Expanded(
+                    flex: 1,
+                    child: Divider(),
+                  ),
+                  Expanded(
+                    flex: 40,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 40,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 20,
+                                child: controlPanelWidgets[9],
+                              ),
+                              const Expanded(
+                                flex: 1,
+                                child: Divider(),
+                              ),
+                              Expanded(
+                                flex: 20,
+                                child: controlPanelWidgets[10],
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Expanded(
+                          flex: 1,
+                          child: VerticalDivider(),
+                        ),
+                        Expanded(
+                          flex: 30,
+                          child: controlPanelWidgets[11],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
 
+/*
+..######...#######..##....##.########.########...#######..##..........########.....###....##....##.########.##..........########.##....##.########.
+.##....##.##.....##.###...##....##....##.....##.##.....##.##..........##.....##...##.##...###...##.##.......##..........##.......###...##.##.....##
+.##.......##.....##.####..##....##....##.....##.##.....##.##..........##.....##..##...##..####..##.##.......##..........##.......####..##.##.....##
+.##.......##.....##.##.##.##....##....########..##.....##.##..........########..##.....##.##.##.##.######...##..........######...##.##.##.##.....##
+.##.......##.....##.##..####....##....##...##...##.....##.##..........##........#########.##..####.##.......##..........##.......##..####.##.....##
+.##....##.##.....##.##...###....##....##....##..##.....##.##..........##........##.....##.##...###.##.......##..........##.......##...###.##.....##
+..######...#######..##....##....##....##.....##..#######..########....##........##.....##.##....##.########.########....########.##....##.########.
+*/
     attributes.add(
       attributeBoxGenerator(
         0,
@@ -1482,16 +1495,26 @@ class _MyAppState extends State<MyApp> {
 .########..#######..##.....##.########.....##.....##.########....##....##.....##..#######..########...######.
 */
 
-void loadCharacter() {
+//void loadCharacter() {
+List<String> loadStats() {
   final file = File('character01.xml');
   final document = XmlDocument.parse(file.readAsStringSync());
+  List<String> tempReturn = [];
 
   for (int i = 0; i < keys.length; i++) {
-    loadedStats.add(
+    tempReturn.add(
         detag(document.findAllElements(keys[i]).toList().toString(), keys[i]));
   }
 
+  return tempReturn;
+}
+
+List<Spell> loadSpells() {
+  final file = File('character01.xml');
+  final document = XmlDocument.parse(file.readAsStringSync());
+
   final List<XmlElement> spellTags = document.findAllElements('spell').toList();
+  List<Spell> tempReturn = [];
 
   for (int i = 0; i < spellTags.length; i++) {
     String name =
@@ -1511,10 +1534,18 @@ void loadCharacter() {
 
     Spell spellTemp =
         Spell(name, level, range, active, duration, description, effect);
-    spellBook.addSpell(spellTemp);
+    tempReturn.add(spellTemp);
   }
 
+  return tempReturn;
+}
+
+List<Item> loadItems() {
+  final file = File('character01.xml');
+  final document = XmlDocument.parse(file.readAsStringSync());
+
   final List<XmlElement> itemTags = document.findAllElements('item').toList();
+  List<Item> tempReturn = [];
 
   for (int i = 0; i < itemTags.length; i++) {
     String name = detag(itemTags[i].findAllElements('name').toString(), 'name');
@@ -1526,28 +1557,18 @@ void loadCharacter() {
         detag(itemTags[i].findAllElements('priority').toString(), 'priority'));
 
     Item itemTemp = Item(name, number, description, priority);
-    inventory.addItem(itemTemp);
+    tempReturn.add(itemTemp);
   }
 
-  final List<XmlElement> animalTags =
-      document.findAllElements('animal').toList();
+  return tempReturn;
+}
 
-  for (int i = 0; i < animalTags.length; i++) {
-    String name =
-        detag(animalTags[i].findAllElements('name').toString(), 'name');
-    int number = int.parse(
-        detag(animalTags[i].findAllElements('number').toString(), 'number'));
-    String description = detag(
-        animalTags[i].findAllElements('description').toString(), 'description');
-    int priority = int.parse(
-        detag(itemTags[i].findAllElements('priority').toString(), 'priority'));
-
-    Animal animalTemp = Animal(name, number, description, priority);
-    inventory.addAnimals(animalTemp);
-  }
-
+List<Consumable> loadConsumables() {
+  final file = File('character01.xml');
+  final document = XmlDocument.parse(file.readAsStringSync());
   final List<XmlElement> consumableTags =
       document.findAllElements('consumable').toList();
+  List<Consumable> tempReturn = [];
 
   for (int i = 0; i < consumableTags.length; i++) {
     String name =
@@ -1557,15 +1578,22 @@ void loadCharacter() {
     String description = detag(
         consumableTags[i].findAllElements('description').toString(),
         'description');
-    int priority = int.parse(
-        detag(itemTags[i].findAllElements('priority').toString(), 'priority'));
+    int priority = int.parse(detag(
+        consumableTags[i].findAllElements('priority').toString(), 'priority'));
 
     Consumable consumableTemp = Consumable(name, number, description, priority);
-    inventory.addConsumable(consumableTemp);
+    tempReturn.add(consumableTemp);
   }
 
+  return tempReturn;
+}
+
+List<Weapon> loadWeapons() {
+  final file = File('character01.xml');
+  final document = XmlDocument.parse(file.readAsStringSync());
   final List<XmlElement> weaponTags =
       document.findAllElements('weapon').toList();
+  List<Weapon> tempReturn = [];
 
   for (int i = 0; i < weaponTags.length; i++) {
     String name =
@@ -1583,8 +1611,34 @@ void loadCharacter() {
 
     Weapon weaponTemp =
         Weapon(name, number, description, damage, bonus, priority);
-    inventory.addWeapon(weaponTemp);
+    tempReturn.add(weaponTemp);
   }
+
+  return tempReturn;
+}
+
+List<Animal> loadAnimals() {
+  final file = File('character01.xml');
+  final document = XmlDocument.parse(file.readAsStringSync());
+  final List<XmlElement> animalTags =
+      document.findAllElements('animal').toList();
+  List<Animal> tempReturn = [];
+
+  for (int i = 0; i < animalTags.length; i++) {
+    String name =
+        detag(animalTags[i].findAllElements('name').toString(), 'name');
+    int number = int.parse(
+        detag(animalTags[i].findAllElements('number').toString(), 'number'));
+    String description = detag(
+        animalTags[i].findAllElements('description').toString(), 'description');
+    int priority = int.parse(detag(
+        animalTags[i].findAllElements('priority').toString(), 'priority'));
+
+    Animal animalTemp = Animal(name, number, description, priority);
+    tempReturn.add(animalTemp);
+  }
+
+  return tempReturn;
 }
 
 /*
@@ -1771,6 +1825,14 @@ class Inventory {
   List<Weapon> _weapons = [];
   List<Animal> _animals = [];
 
+  Inventory(List<Item> items, List<Consumable> consumables,
+      List<Weapon> weapons, List<Animal> animals) {
+    _items = items;
+    _consumables = consumables;
+    _weapons = weapons;
+    _animals = animals;
+  }
+
   void inventoryOrder() {
     _inventoryOrderItems();
     _inventoryOrderConsumables();
@@ -1811,6 +1873,22 @@ class Inventory {
     _inventoryOrderAnimals();
   }
 
+  List<Item> getItems() {
+    return _items;
+  }
+
+  List<Consumable> getConsumables() {
+    return _consumables;
+  }
+
+  List<Weapon> getWeapons() {
+    return _weapons;
+  }
+
+  List<Animal> getAnimals() {
+    return _animals;
+  }
+
   @override
   String toString() {
     String total = '';
@@ -1839,29 +1917,26 @@ class Inventory {
 
     return total;
   }
-
-  List<Item> getItems() {
-    return _items;
-  }
-
-  List<Consumable> getConsumables() {
-    return _consumables;
-  }
-
-  List<Weapon> getWeapons() {
-    return _weapons;
-  }
-
-  List<Animal> getAnimals() {
-    return _animals;
-  }
 }
 
 class SpellBook {
   List<Spell> _spells = [];
 
+  SpellBook(List<Spell> spells) {
+    _spells = spells;
+  }
+
   void spellsOrder() {
     //TODO to reorder the spells in active order, then level, then alphabetical order
+  }
+
+  void addSpell(Spell spell) {
+    _spells.add(spell);
+    spellsOrder();
+  }
+
+  List<Spell> getSpells() {
+    return _spells;
   }
 
   @override
@@ -1872,14 +1947,6 @@ class SpellBook {
       total += '${_spells[i].toString()}\n';
     }
     return total;
-  }
-
-  void addSpell(Spell spell) {
-    _spells.add(spell);
-  }
-
-  List<Spell> getSpells() {
-    return _spells;
   }
 }
 
