@@ -67,6 +67,8 @@
     <l8slotsUsed>0</l8slotsUsed>
     <l9slotsTotal>0</l9slotsTotal>
     <l9slotsUsed>0</l9slotsUsed>
+    <armor>11</armor>
+    <weakness>0</weakness>
 </stats>
 
 <inventory>
@@ -144,4 +146,8 @@
         <active>0</active>
     </spell>
 </spells>
+
+<settings>
+    <darkMode>1</darkMode>
+</settings>
 </all>

@@ -2,11 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:xml/xml.dart';
 import 'dart:io';
 
-final List<Color> colors = [
-  Color.fromRGBO(184, 115, 51, 1),
-  Color.fromRGBO(169, 169, 169, 1),
-  Color.fromRGBO(255, 215, 0, 1),
-  Color.fromRGBO(229, 228, 226, 1),
+final List<int> xpPerLevel = [
+  0,
+  300,
+  900,
+  2700,
+  6500,
+  14000,
+  23000,
+  34000,
+  48000,
+  64000,
+  85000,
+  100000,
+  120000,
+  140000,
+  165000,
+  195000,
+  225000,
+  265000,
+  305000,
+  355000
 ];
 
 final List<String> attributeNames = [
@@ -85,13 +101,20 @@ final List<String> keys = [
   'l8slotsUsed',
   'l9slotsTotal',
   'l9slotsUsed',
+  'armor',
+  'weakness',
+];
+
+final List<Color> colors = [
+  const Color.fromRGBO(184, 115, 51, 1),
+  const Color.fromRGBO(169, 169, 169, 1),
+  const Color.fromRGBO(255, 215, 0, 1),
+  const Color.fromRGBO(229, 228, 226, 1),
 ];
 
 List<Widget> data50 = [];
 
 List<Widget> controlPanelWidgets = [];
-
-int level = 2;
 
 String nomePersonaggio = 'Riven Gudsen';
 
@@ -102,6 +125,10 @@ Inventory inventory = Inventory();
 SpellBook spellBook = SpellBook();
 
 List<String> statistics = [];
+
+List<Function> buttonFunctions = [];
+
+Color levelColor = const Color.fromRGBO(150, 150, 150, 1);
 
 /*
 .##.....##....###....####.##....##
@@ -114,15 +141,34 @@ List<String> statistics = [];
 */
 
 void main() {
+  debugPrint('\nMAIN CALL\n');
   for (int i = 0; i < 50; i++) {
-    data50.add(Text('data${i + 1}'));
+    data50.add(
+      FractionallySizedBox(
+        widthFactor: 1,
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 6,
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Text('data$i'),
+                  ),
+                ),
+                const Expanded(
+                  flex: 1,
+                  child: VerticalDivider(),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
-
-  loadCharacter();
-
-  debugPrint(inventory.toString());
-  debugPrint('\n\n');
-  debugPrint(spellBook.toString());
 
   runApp(const MyApp());
 }
@@ -178,9 +224,12 @@ Widget quickInventoryGenerator(String titleBox, List<Widget> items) {
 .##.....##....##.......##....##.....##.####.########...#######.....##....########....########...#######..##.....##
 */
 Widget attributeBoxGenerator(
-    String name, int value, List<String> stats, List<String> profs) {
+    int index, List<String> stats, List<String> profs, Function buttonFunc) {
   String statistic = '';
   String modifier = '';
+  int value = int.parse(loadedStats[index + 7]);
+
+  int level = levelFromXP(int.parse(loadedStats[17]));
 
   if (value < 10) {
     statistic = '0';
@@ -203,7 +252,7 @@ Widget attributeBoxGenerator(
                   flex: 3,
                   child: FittedBox(
                     fit: BoxFit.fitWidth,
-                    child: Text(name),
+                    child: Text(attributeNames[index]),
                   ),
                 ),
                 Expanded(
@@ -215,16 +264,22 @@ Widget attributeBoxGenerator(
                 ),
                 Expanded(
                   flex: 3,
-                  child: FittedBox(
-                    fit: BoxFit.fitHeight,
-                    child: Card(
-                      child: TextButton(
-                        onPressed: () {
-                          //TODO funzioni di premuta bottoni
-                        },
-                        child: Text(
-                          statistic,
-                          style: const TextStyle(color: Colors.white),
+                  child: FractionallySizedBox(
+                    heightFactor: 1,
+                    widthFactor: 1,
+                    child: GestureDetector(
+                      onTap: () {
+                        buttonFunc();
+                      },
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text(
+                              statistic,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -481,7 +536,7 @@ Widget controlPanelGenerator() {
                   flex: 30,
                   child: controlPanelWidgets[0],
                 ),
-                Expanded(
+                const Expanded(
                   flex: 1,
                   child: Divider(),
                 ),
@@ -497,7 +552,7 @@ Widget controlPanelGenerator() {
                               flex: 20,
                               child: controlPanelWidgets[1],
                             ),
-                            Expanded(
+                            const Expanded(
                               flex: 1,
                               child: Divider(),
                             ),
@@ -508,7 +563,7 @@ Widget controlPanelGenerator() {
                           ],
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         flex: 1,
                         child: VerticalDivider(),
                       ),
@@ -523,7 +578,7 @@ Widget controlPanelGenerator() {
             ),
           ),
         ),
-        Expanded(
+        const Expanded(
           flex: 1,
           child: VerticalDivider(),
         ),
@@ -537,7 +592,7 @@ Widget controlPanelGenerator() {
                   flex: 30,
                   child: controlPanelWidgets[4],
                 ),
-                Expanded(
+                const Expanded(
                   flex: 1,
                   child: Divider(),
                 ),
@@ -553,7 +608,7 @@ Widget controlPanelGenerator() {
                               flex: 20,
                               child: controlPanelWidgets[5],
                             ),
-                            Expanded(
+                            const Expanded(
                               flex: 1,
                               child: Divider(),
                             ),
@@ -564,7 +619,7 @@ Widget controlPanelGenerator() {
                           ],
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         flex: 1,
                         child: VerticalDivider(),
                       ),
@@ -579,7 +634,7 @@ Widget controlPanelGenerator() {
             ),
           ),
         ),
-        Expanded(
+        const Expanded(
           flex: 1,
           child: VerticalDivider(),
         ),
@@ -593,7 +648,7 @@ Widget controlPanelGenerator() {
                   flex: 30,
                   child: controlPanelWidgets[8],
                 ),
-                Expanded(
+                const Expanded(
                   flex: 1,
                   child: Divider(),
                 ),
@@ -609,7 +664,7 @@ Widget controlPanelGenerator() {
                               flex: 20,
                               child: controlPanelWidgets[9],
                             ),
-                            Expanded(
+                            const Expanded(
                               flex: 1,
                               child: Divider(),
                             ),
@@ -620,7 +675,7 @@ Widget controlPanelGenerator() {
                           ],
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         flex: 1,
                         child: VerticalDivider(),
                       ),
@@ -662,22 +717,35 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('\nBUILD CALL\n');
+    loadCharacter();
+
     List<Widget> attributes = [];
     List<Widget> quickMenus = [];
 
     inventory.inventoryOrder();
     spellBook.spellsOrder();
 
+    buttonFunctions.add(pressedFunctionStrength);
+    buttonFunctions.add(pressedFunctionDexterity);
+    buttonFunctions.add(pressedFunctionConstitution);
+    buttonFunctions.add(pressedFunctionIntelligence);
+    buttonFunctions.add(pressedFunctionWisdom);
+    buttonFunctions.add(pressedFunctionCharisma);
+
     controlPanelWidgets.add(
-      Card(
-        child: GestureDetector(
-          onTap: (){
-            pressedFunctionHP();
-          },
+      GestureDetector(
+        onTap: () {
+          pressedFunctionHP();
+        },
+        child: Card(
           child: FractionallySizedBox(
             heightFactor: 1,
             widthFactor: 1,
-            child: Text('0'),
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: Text('${loadedStats[14]}/${loadedStats[13]}'),
+            ),
           ),
         ),
       ),
@@ -686,34 +754,9 @@ class _MyAppState extends State<MyApp> {
       FractionallySizedBox(
         heightFactor: 1,
         widthFactor: 1,
-        child: Text('1'),
-      ),
-    );
-    controlPanelWidgets.add(
-      FractionallySizedBox(
-        heightFactor: 1,
-        widthFactor: 1,
-        child: Text('2'),
-      ),
-    );
-    controlPanelWidgets.add(
-      FractionallySizedBox(
-        heightFactor: 1,
-        widthFactor: 1,
-        child: Text('3'),
-      ),
-    );
-    controlPanelWidgets.add(
-      Card(
-        child: GestureDetector(
-          onTap: (){
-            pressedFunctionHP();
-          },
-          child: FractionallySizedBox(
-            heightFactor: 1,
-            widthFactor: 1,
-            child: Text('4'),
-          ),
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Text('${(int.parse(loadedStats[47]) / 2).toString()}m/s'),
         ),
       ),
     );
@@ -721,48 +764,10 @@ class _MyAppState extends State<MyApp> {
       FractionallySizedBox(
         heightFactor: 1,
         widthFactor: 1,
-        child: Text('5'),
-      ),
-    );
-    controlPanelWidgets.add(
-      FractionallySizedBox(
-        heightFactor: 1,
-        widthFactor: 1,
-        child: Text('6'),
-      ),
-    );
-    controlPanelWidgets.add(
-      FractionallySizedBox(
-        heightFactor: 1,
-        widthFactor: 1,
-        child: Text('7'),
-      ),
-    );
-    controlPanelWidgets.add(
-      Card(
-        child: GestureDetector(
-          onTap: (){
-            pressedFunctionHP();
-          },
-          child: FractionallySizedBox(
-            heightFactor: 1,
-            widthFactor: 1,
-            child: Text('8'),
-          ),
-        ),
-      ),
-    );
-    controlPanelWidgets.add(
-      Card(
-        child: GestureDetector(
-          onTap: (){
-            pressedFunctionHP();
-          },
-          child: FractionallySizedBox(
-            heightFactor: 1,
-            widthFactor: 1,
-            child: Text('9'),
-          ),
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Text(valueToSignedString(
+              modifierFromValue(int.parse(loadedStats[8])))),
         ),
       ),
     );
@@ -770,126 +775,311 @@ class _MyAppState extends State<MyApp> {
       FractionallySizedBox(
         heightFactor: 1,
         widthFactor: 1,
-        child: Text('10'),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 5,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text((int.parse(loadedStats[66]) +
+                        modifierFromValue(int.parse(loadedStats[8])))
+                    .toString()),
+              ),
+            ),
+            const Expanded(
+              flex: 2,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Padding(
+                  padding: EdgeInsets.all(2.0),
+                  child: Text('Armor'),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
     controlPanelWidgets.add(
       GestureDetector(
-          onTap: (){
-            pressedFunctionHP();
-          },
+        onTap: () {
+          pressedFunctionXP();
+        },
+        child: Card(
           child: FractionallySizedBox(
             heightFactor: 1,
             widthFactor: 1,
-            child: Row(
+            child: Stack(
               children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Stack(
-                          children: [
-                            FractionallySizedBox(
-                              heightFactor: 1,
-                              widthFactor: 1,
-                              child: Card(
-                                color: colors[0],
-                                child: Text(' '),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Stack(
-                          children: [
-                            FractionallySizedBox(
-                              heightFactor: 1,
-                              widthFactor: 1,
-                              child: Card(
-                                color: colors[2],
-                                child: Text(' '),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                Card(
+                  color: levelColor,
+                  child: FractionallySizedBox(
+                    heightFactor: 1,
+                    widthFactor:
+                        percentageOfLevel(int.parse(loadedStats[17]) + 1) / 100,
+                    child: const Text(' '),
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Stack(
-                          children: [
-                            FractionallySizedBox(
-                              heightFactor: 1,
-                              widthFactor: 1,
-                              child: Card(
-                                color: colors[1],
-                                child: Text(' '),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Stack(
-                          children: [
-                            FractionallySizedBox(
-                              heightFactor: 1,
-                              widthFactor: 1,
-                              child: Card(
-                                color: colors[3],
-                                child: Text(' '),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FractionallySizedBox(
+                    heightFactor: 1,
+                    widthFactor: 1,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                          'Level ${levelFromXP(int.parse(loadedStats[17]))}'),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Text(loadedStats[42]),
+        ),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Text((10 +
+                  modifierFromValue(int.parse(loadedStats[11])) +
+                  int.parse(loadedStats[36]) *
+                      profBonusFromLevel(
+                          levelFromXP(int.parse(loadedStats[17]))))
+              .toString()),
+        ),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 5,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text(valueToSignedString(profBonusFromLevel(
+                        levelFromXP(int.parse(loadedStats[17]))))
+                    .toString()),
+              ),
+            ),
+            const Expanded(
+              flex: 2,
+              child: FittedBox(
+                child: Padding(
+                  padding: EdgeInsets.all(2.0),
+                  child: Text('Prof. Bonus'),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    controlPanelWidgets.add(
+      GestureDetector(
+        onTap: () {
+          pressedFunctionRnC();
+        },
+        child: Card(
+          child: FractionallySizedBox(
+            heightFactor: 1,
+            widthFactor: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(loadedStats[3]),
+                    ),
+                  ),
+                  const Expanded(flex: 1, child: Divider()),
+                  Expanded(
+                    flex: 7,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(loadedStats[4]),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    controlPanelWidgets.add(
+      GestureDetector(
+        onTap: () {
+          pressedFunctionFullRest();
+        },
+        child: const Card(
+          child: FractionallySizedBox(
+            heightFactor: 1,
+            widthFactor: 1,
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('Full Rest'),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    controlPanelWidgets.add(
+      FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 1,
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Text(loadedStats[67]),
+        ),
+      ),
+    );
+    controlPanelWidgets.add(
+      GestureDetector(
+        onTap: () {
+          pressedFunctionCoins();
+        },
+        child: FractionallySizedBox(
+          heightFactor: 1,
+          widthFactor: 1,
+          child: Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Stack(
+                        children: [
+                          FractionallySizedBox(
+                            heightFactor: 1,
+                            widthFactor: 1,
+                            child: Card(
+                              color: colors[0],
+                              child: const Text(' '),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Stack(
+                        children: [
+                          FractionallySizedBox(
+                            heightFactor: 1,
+                            widthFactor: 1,
+                            child: Card(
+                              color: colors[2],
+                              child: const Text(' '),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Stack(
+                        children: [
+                          FractionallySizedBox(
+                            heightFactor: 1,
+                            widthFactor: 1,
+                            child: Card(
+                              color: colors[1],
+                              child: const Text(' '),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Stack(
+                        children: [
+                          FractionallySizedBox(
+                            heightFactor: 1,
+                            widthFactor: 1,
+                            child: Card(
+                              color: colors[3],
+                              child: const Text(' '),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
 
     Widget controlPanel = controlPanelGenerator();
 
     attributes.add(
       attributeBoxGenerator(
-        attributeNames[0],
-        8,
+        0,
         ['Saving Throws', '', '', '', '', 'Athletics'],
-        ['0', '', '', '', '', '1'],
+        [loadedStats[18], '', '', '', '', loadedStats[24]],
+        buttonFunctions[0],
       ),
     );
     attributes.add(attributeBoxGenerator(
-        attributeNames[1],
-        15,
-        ['Saving Throws', '', '', 'Acrobatics', 'Sleight of Hand', 'Stealth'],
-        ['0', '', '', '0', '0', '0']));
+      1,
+      ['Saving Throws', '', '', 'Acrobatics', 'Sleight of Hand', 'Stealth'],
+      [
+        loadedStats[19],
+        '',
+        '',
+        loadedStats[25],
+        loadedStats[26],
+        loadedStats[27]
+      ],
+      buttonFunctions[1],
+    ));
     attributes.add(
       attributeBoxGenerator(
-        attributeNames[2],
-        14,
+        2,
         ['Saving Throws', '', '', '', '', ''],
-        ['0', '', '', '', '', ''],
+        [loadedStats[20], '', '', '', '', ''],
+        buttonFunctions[2],
       ),
     );
     attributes.add(
       attributeBoxGenerator(
-        attributeNames[3],
-        10,
+        3,
         [
           'Saving Throws',
           'Arcana',
@@ -898,13 +1088,20 @@ class _MyAppState extends State<MyApp> {
           'Nature',
           'Religion'
         ],
-        ['0', '0', '0', '1', '0', '0'],
+        [
+          loadedStats[21],
+          loadedStats[28],
+          loadedStats[29],
+          loadedStats[30],
+          loadedStats[31],
+          loadedStats[32]
+        ],
+        buttonFunctions[3],
       ),
     );
     attributes.add(
       attributeBoxGenerator(
-        attributeNames[4],
-        12,
+        4,
         [
           'Saving Throws',
           'Animal Handling',
@@ -913,13 +1110,20 @@ class _MyAppState extends State<MyApp> {
           'Perception',
           'Survival'
         ],
-        ['1', '0', '0', '0', '1', '0'],
+        [
+          loadedStats[22],
+          loadedStats[33],
+          loadedStats[34],
+          loadedStats[35],
+          loadedStats[36],
+          loadedStats[37]
+        ],
+        buttonFunctions[4],
       ),
     );
     attributes.add(
       attributeBoxGenerator(
-        attributeNames[5],
-        16,
+        5,
         [
           'Saving Throws',
           '',
@@ -928,7 +1132,15 @@ class _MyAppState extends State<MyApp> {
           'Performance',
           'Persuasion'
         ],
-        ['1', '', '1', '1', '0', '0'],
+        [
+          loadedStats[23],
+          '',
+          loadedStats[38],
+          loadedStats[39],
+          loadedStats[40],
+          loadedStats[41]
+        ],
+        buttonFunctions[5],
       ),
     );
 
@@ -1279,8 +1491,6 @@ void loadCharacter() {
         detag(document.findAllElements(keys[i]).toList().toString(), keys[i]));
   }
 
-  debugPrint(loadedStats.toString());
-
   final List<XmlElement> spellTags = document.findAllElements('spell').toList();
 
   for (int i = 0; i < spellTags.length; i++) {
@@ -1392,17 +1602,50 @@ String detag(String tagged, String tag) {
 }
 
 int profBonusFromLevel(int level) {
-  return 2;
+  return ((level - 1) / 4).floor() + 2;
+}
+
+int levelFromXP(int xp) {
+  int len = xpPerLevel.length;
+  if (xp > xpPerLevel[len - 1]) return len;
+  int i = 0;
+  while (i < xpPerLevel.length - 1) {
+    if (xp >= xpPerLevel[i] && xp < xpPerLevel[i + 1]) return i + 1;
+    i++;
+  }
+  return 0;
 }
 
 int modifierFromValue(int value) {
-  int modifier = (((value - value % 2) - 10) / 2).round();
+  int modifier = (((value - value % 2) - 10) / 2).floor();
 
   return modifier;
 }
 
 String valueToSignedString(int value) {
   return value > 0 ? '+${value.toString()}' : value.toString();
+}
+
+int stripCompletedLevelsFromXP(int xp) {
+  int level = levelFromXP(xp);
+  if (level >= xpPerLevel.length) return xpPerLevel[xpPerLevel.length - 1];
+
+  int current = xp - xpPerLevel[level - 1];
+
+  return current;
+}
+
+int percentageOfLevel(int xp) {
+  int level = levelFromXP(xp);
+  if (level >= xpPerLevel.length) return 100;
+
+  int ret = 0;
+
+  int max = xpPerLevel[level] - xpPerLevel[level - 1];
+
+  ret = (stripCompletedLevelsFromXP(xp) * 100 / max).floor();
+
+  return ret;
 }
 
 /*
@@ -1650,6 +1893,46 @@ class SpellBook {
 .########...#######.....##.......##.....#######..##....##....##.....##.########....##....##.....##..#######..########...######.
 */
 
-void pressedFunctionHP(){
-  debugPrint('\nmammt\n');
+void pressedFunctionHP() {
+  debugPrint('\nmammtHP\n');
+}
+
+void pressedFunctionXP() {
+  debugPrint('\nmammtXP\n');
+}
+
+void pressedFunctionRnC() {
+  debugPrint('\nmammtRnC\n');
+}
+
+void pressedFunctionCoins() {
+  debugPrint('\nmammtCoins\n');
+}
+
+void pressedFunctionFullRest() {
+  debugPrint('\nmammtFR\n');
+}
+
+void pressedFunctionStrength() {
+  debugPrint('\nmammtStrength\n');
+}
+
+void pressedFunctionDexterity() {
+  debugPrint('\nmammtDexterity\n');
+}
+
+void pressedFunctionConstitution() {
+  debugPrint('\nmammtConstitution\n');
+}
+
+void pressedFunctionIntelligence() {
+  debugPrint('\nmammtIntelligence\n');
+}
+
+void pressedFunctionWisdom() {
+  debugPrint('\nmammtWisdom\n');
+}
+
+void pressedFunctionCharisma() {
+  debugPrint('\nmammtCharisma\n');
 }
