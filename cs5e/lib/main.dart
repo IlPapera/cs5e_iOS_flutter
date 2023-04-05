@@ -112,8 +112,6 @@ const List<Color> colors = [
   Color.fromRGBO(229, 228, 226, 1),
 ];
 
-List<String> loadedStats = [];
-
 List<Widget> data50 = [];
 
 const Color levelColor = Color.fromRGBO(150, 150, 150, 1);
@@ -211,8 +209,8 @@ Widget quickInventoryGenerator(String titleBox, List<Widget> items) {
 .##.....##....##.......##....##....##...##..##.....##.##.....##....##....##..........##.....##.##.....##..##...##.
 .##.....##....##.......##....##.....##.####.########...#######.....##....########....########...#######..##.....##
 */
-Widget attributeBoxGenerator(
-    int index, List<String> stats, List<String> profs, Function buttonFunc) {
+Widget attributeBoxGenerator(int index, List<String> stats, List<String> profs,
+    Function buttonFunc, List<String> loadedStats) {
   String statistic = '';
   String modifier = '';
   int value = int.parse(loadedStats[index + 7]);
@@ -538,12 +536,12 @@ class _MyAppState extends State<MyApp> {
 
     List<Widget> controlPanelWidgets = [];
 
+    List<String> loadedStats = loadStats();
+
     Inventory inventory =
         Inventory(loadItems(), loadConsumables(), loadWeapons(), loadAnimals());
 
     SpellBook spellBook = SpellBook(loadSpells());
-
-    List<String> statistics = [];
 
     inventory.inventoryOrder();
     spellBook.spellsOrder();
@@ -880,6 +878,16 @@ class _MyAppState extends State<MyApp> {
       ),
     );
 
+/*
+..######......########..........######..########.########..##.....##..######..########.##.....##.########..########
+.##....##.....##.....##........##....##....##....##.....##.##.....##.##....##....##....##.....##.##.....##.##......
+.##...........##.....##........##..........##....##.....##.##.....##.##..........##....##.....##.##.....##.##......
+.##...........########..........######.....##....########..##.....##.##..........##....##.....##.########..######..
+.##...........##.....................##....##....##...##...##.....##.##..........##....##.....##.##...##...##......
+.##....##.###.##........###....##....##....##....##....##..##.....##.##....##....##....##.....##.##....##..##......
+..######..###.##........###.....######.....##....##.....##..#######...######.....##.....#######..##.....##.########
+*/
+
     Widget controlPanel = Padding(
       padding: EdgeInsets.all(8.0),
       child: Row(
@@ -1067,27 +1075,32 @@ class _MyAppState extends State<MyApp> {
         ['Saving Throws', '', '', '', '', 'Athletics'],
         [loadedStats[18], '', '', '', '', loadedStats[24]],
         buttonFunctions[0],
+        loadedStats,
       ),
     );
-    attributes.add(attributeBoxGenerator(
-      1,
-      ['Saving Throws', '', '', 'Acrobatics', 'Sleight of Hand', 'Stealth'],
-      [
-        loadedStats[19],
-        '',
-        '',
-        loadedStats[25],
-        loadedStats[26],
-        loadedStats[27]
-      ],
-      buttonFunctions[1],
-    ));
+    attributes.add(
+      attributeBoxGenerator(
+        1,
+        ['Saving Throws', '', '', 'Acrobatics', 'Sleight of Hand', 'Stealth'],
+        [
+          loadedStats[19],
+          '',
+          '',
+          loadedStats[25],
+          loadedStats[26],
+          loadedStats[27]
+        ],
+        buttonFunctions[1],
+        loadedStats,
+      ),
+    );
     attributes.add(
       attributeBoxGenerator(
         2,
         ['Saving Throws', '', '', '', '', ''],
         [loadedStats[20], '', '', '', '', ''],
         buttonFunctions[2],
+        loadedStats,
       ),
     );
     attributes.add(
@@ -1110,6 +1123,7 @@ class _MyAppState extends State<MyApp> {
           loadedStats[32]
         ],
         buttonFunctions[3],
+        loadedStats,
       ),
     );
     attributes.add(
@@ -1132,6 +1146,7 @@ class _MyAppState extends State<MyApp> {
           loadedStats[37]
         ],
         buttonFunctions[4],
+        loadedStats,
       ),
     );
     attributes.add(
@@ -1154,6 +1169,7 @@ class _MyAppState extends State<MyApp> {
           loadedStats[41]
         ],
         buttonFunctions[5],
+        loadedStats,
       ),
     );
 

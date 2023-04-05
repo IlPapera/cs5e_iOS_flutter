@@ -4,7 +4,7 @@
     <serial>000001</serial>
     <cName>Riven Gudsen</cName>
     <pName>Parham</pName>
-    <race>Dark Elf</race>
+    <race>Drow</race>
     <class>Warlock</class>
     <background>Dissident</background>
     <alignment>CN</alignment>
@@ -18,7 +18,7 @@
     <currentHealth>14</currentHealth>
     <hitDice>1d8</hitDice>
     <speed>18</speed>
-    <experience>21000</experience>
+    <experience>2100</experience>
     <profStrength>0</profStrength>
     <profDexterity>0</profDexterity>
     <profConstitution>0</profConstitution>
