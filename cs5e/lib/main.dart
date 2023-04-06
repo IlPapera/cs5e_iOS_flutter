@@ -141,7 +141,7 @@ void main() {
                   flex: 6,
                   child: FittedBox(
                     fit: BoxFit.contain,
-                    child: Text('data$i'),
+                    child: Text('data${i + 1}'),
                   ),
                 ),
                 const Expanded(
