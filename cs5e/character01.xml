@@ -15,7 +15,7 @@
     <wisdom>12</wisdom>
     <charisma>16</charisma>
     <maxHealth>28</maxHealth>
-    <currentHealth>14</currentHealth>
+    <currentHealth>28</currentHealth>
     <hitDice>1d8</hitDice>
     <speed>18</speed>
     <experience>2100</experience>
