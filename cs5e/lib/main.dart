@@ -112,9 +112,11 @@ const List<Color> colors = [
   Color.fromRGBO(229, 228, 226, 1),
 ];
 
-List<Widget> data50 = [];
-
 const Color levelColor = Color.fromRGBO(150, 150, 150, 1);
+
+int heightPixel = 1080;
+
+int fractionQI = 0;
 
 /*
 .##.....##....###....####.##....##
@@ -128,33 +130,6 @@ const Color levelColor = Color.fromRGBO(150, 150, 150, 1);
 
 void main() {
   debugPrint('\nMAIN CALL\n');
-  for (int i = 0; i < 50; i++) {
-    data50.add(
-      FractionallySizedBox(
-        widthFactor: 1,
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 6,
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text('data${i + 1}'),
-                  ),
-                ),
-                const Expanded(
-                  flex: 1,
-                  child: VerticalDivider(),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
   runApp(const MyApp());
 }
@@ -188,7 +163,7 @@ Widget quickInventoryGenerator(String titleBox, List<Widget> items) {
             Expanded(
               flex: 5,
               child: ListView(
-                children: data50,
+                children: items,
               ),
             )
           ],
@@ -197,6 +172,134 @@ Widget quickInventoryGenerator(String titleBox, List<Widget> items) {
     ),
   );
 
+  return returnBox;
+}
+
+/*
+..#######......####........####.########.########.##.....##.....######.....###....########..########.
+.##.....##......##..........##.....##....##.......###...###....##....##...##.##...##.....##.##.....##
+.##.....##......##..........##.....##....##.......####.####....##........##...##..##.....##.##.....##
+.##.....##......##..........##.....##....######...##.###.##....##.......##.....##.########..##.....##
+.##..##.##......##..........##.....##....##.......##.....##....##.......#########.##...##...##.....##
+.##....##..###..##..###.....##.....##....##.......##.....##....##....##.##.....##.##....##..##.....##
+..#####.##.###.####.###....####....##....########.##.....##.....######..##.....##.##.....##.########.
+*/
+
+Widget quickInvItemCardGenerator(Item item) {
+  Widget returnBox = SizedBox(
+    height: heightPixel / fractionQI,
+    child: FractionallySizedBox(
+      widthFactor: 1,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 7,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(item.getName()),
+                ),
+              ),
+              const Expanded(
+                flex: 1,
+                child: VerticalDivider(),
+              ),
+              Expanded(
+                flex: 1,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text('x${item.getNumber().toString()}'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+  return returnBox;
+}
+
+Widget quickInvWeaponCardGenerator(Weapon weapon) {
+  Widget returnBox = SizedBox(
+    height: heightPixel / fractionQI,
+    child: FractionallySizedBox(
+      widthFactor: 1,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 5,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(weapon.getName()),
+                ),
+              ),
+              const Expanded(
+                flex: 1,
+                child: VerticalDivider(),
+              ),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(weapon.getDamage()),
+                      ),
+                    ),
+                    const Expanded(
+                      flex: 1,
+                      child: Divider(),
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(weapon.getBonus()),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+  return returnBox;
+}
+
+Widget quickInvSpellCardGenerator(Spell spell) {
+  Widget returnBox = SizedBox(
+    height: heightPixel / fractionQI,
+    child: FractionallySizedBox(
+      widthFactor: 1,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 7,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(spell.getName()),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
   return returnBox;
 }
 
@@ -531,6 +634,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     debugPrint('\nBUILD CALL\n');
 
+    fractionQI = 10;
+
     List<Widget> attributes = [];
     List<Widget> quickMenus = [];
 
@@ -554,6 +659,91 @@ class _MyAppState extends State<MyApp> {
       pressedFunctionWisdom,
       pressedFunctionCharisma
     ];
+
+    List<Weapon> weaponsQuickI = [];
+    List<Item> itemsQuickI = [];
+    List<Spell> spellsQuickI = [];
+
+    List<Widget> weaponsQuickIWidgets = [];
+    List<Widget> itemsQuickIWidgets = [];
+    List<Widget> spellsQuickWidget = [];
+
+/*
+..#######......####.........######..########.########.##.....##.########.
+.##.....##......##.........##....##.##..........##....##.....##.##.....##
+.##.....##......##.........##.......##..........##....##.....##.##.....##
+.##.....##......##..........######..######......##....##.....##.########.
+.##..##.##......##...............##.##..........##....##.....##.##.......
+.##....##..###..##..###....##....##.##..........##....##.....##.##.......
+..#####.##.###.####.###.....######..########....##.....#######..##.......
+*/
+
+    for (int i = 0; i < inventory.getWeapons().length; i++) {
+      if (inventory.getWeapons()[i].getPriority() == 1) {
+        weaponsQuickI.add(inventory.getWeapons()[i]);
+      }
+    }
+    for (int i = 0; i < inventory.getItems().length; i++) {
+      if (inventory.getItems()[i].getPriority() == 1) {
+        itemsQuickI.add(inventory.getItems()[i]);
+      }
+    }
+    for (int i = 0; i < inventory.getConsumables().length; i++) {
+      if (inventory.getConsumables()[i].getPriority() == 1) {
+        itemsQuickI.add(inventory.getConsumables()[i]);
+      }
+    }
+    for (int i = 0; i < inventory.getAnimals().length; i++) {
+      if (inventory.getAnimals()[i].getPriority() == 1) {
+        itemsQuickI.add(inventory.getAnimals()[i]);
+      }
+    }
+    for (int i = 0; i < spellBook.getSpells().length; i++) {
+      if (spellBook.getSpells()[i].getActive() == 1) {
+        spellsQuickI.add(spellBook.getSpells()[i]);
+      }
+    }
+
+    for (int i = 0; i < weaponsQuickI.length; i++) {
+      weaponsQuickIWidgets.add(quickInvWeaponCardGenerator(weaponsQuickI[i]));
+    }
+
+    for (int i = 0; i < itemsQuickI.length; i++) {
+      itemsQuickIWidgets.add(quickInvItemCardGenerator(itemsQuickI[i]));
+    }
+
+    if (spellsQuickI.isNotEmpty) {
+      spellsQuickWidget.add(
+        SizedBox(
+          height: heightPixel / (fractionQI * 4),
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Text(spellsQuickI[0].getLevel() == 0
+                ? 'Cantrips'
+                : 'Level ${spellsQuickI[0].getLevel()} slot ()'),
+          ),
+        ),
+      );
+      spellsQuickWidget.add(const Divider());
+    }
+    for (int i = 0; i < spellsQuickI.length; i++) {
+      if (i > 0 &&
+          (spellsQuickI[i].getLevel() > spellsQuickI[i - 1].getLevel())) {
+        spellsQuickWidget.add(const Divider());
+        spellsQuickWidget.add(
+          SizedBox(
+            height: heightPixel / (fractionQI * 4),
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: Text(
+                  'Level ${spellsQuickI[i].getLevel()} (${int.parse(loadedStats[46 + spellsQuickI[i].getLevel() * 2]) - int.parse(loadedStats[47 + spellsQuickI[i].getLevel() * 2])}/${loadedStats[46 + spellsQuickI[i].getLevel() * 2]})'),
+            ),
+          ),
+        );
+        spellsQuickWidget.add(const Divider());
+      }
+      spellsQuickWidget.add(quickInvSpellCardGenerator(spellsQuickI[i]));
+    }
 
 /*
 ..######...#######..##....##.########.########...#######..##..........########.....###....##....##.########.##......
@@ -596,10 +786,24 @@ class _MyAppState extends State<MyApp> {
       FractionallySizedBox(
         heightFactor: 1,
         widthFactor: 1,
-        child: FittedBox(
-          fit: BoxFit.contain,
-          child: Text(valueToSignedString(
-              modifierFromValue(int.parse(loadedStats[8])))),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 7,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text(valueToSignedString(
+                    modifierFromValue(int.parse(loadedStats[8])))),
+              ),
+            ),
+            const Expanded(
+              flex: 3,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text('Initiative'),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -674,9 +878,18 @@ class _MyAppState extends State<MyApp> {
       FractionallySizedBox(
         heightFactor: 1,
         widthFactor: 1,
-        child: FittedBox(
-          fit: BoxFit.contain,
-          child: Text(loadedStats[42]),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 7,
+              child:
+                  FittedBox(fit: BoxFit.contain, child: Text(loadedStats[42])),
+            ),
+            const Expanded(
+              flex: 3,
+              child: FittedBox(fit: BoxFit.contain, child: Text('Inspiration')),
+            ),
+          ],
         ),
       ),
     );
@@ -684,14 +897,26 @@ class _MyAppState extends State<MyApp> {
       FractionallySizedBox(
         heightFactor: 1,
         widthFactor: 1,
-        child: FittedBox(
-          fit: BoxFit.contain,
-          child: Text((10 +
-                  modifierFromValue(int.parse(loadedStats[11])) +
-                  int.parse(loadedStats[36]) *
-                      profBonusFromLevel(
-                          levelFromXP(int.parse(loadedStats[17]))))
-              .toString()),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 7,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text((10 +
+                        modifierFromValue(int.parse(loadedStats[11])) +
+                        int.parse(loadedStats[36]) *
+                            profBonusFromLevel(
+                                levelFromXP(int.parse(loadedStats[17]))))
+                    .toString()),
+              ),
+            ),
+            const Expanded(
+              flex: 3,
+              child:
+                  FittedBox(fit: BoxFit.contain, child: Text('Passive Wisdom')),
+            ),
+          ],
         ),
       ),
     );
@@ -782,9 +1007,23 @@ class _MyAppState extends State<MyApp> {
       FractionallySizedBox(
         heightFactor: 1,
         widthFactor: 1,
-        child: FittedBox(
-          fit: BoxFit.contain,
-          child: Text(loadedStats[67]),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 7,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text(loadedStats[67]),
+              ),
+            ),
+            const Expanded(
+              flex: 3,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text('Weakness'),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -889,7 +1128,7 @@ class _MyAppState extends State<MyApp> {
 */
 
     Widget controlPanel = Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
           Expanded(
@@ -1061,14 +1300,15 @@ class _MyAppState extends State<MyApp> {
     );
 
 /*
-..######...#######..##....##.########.########...#######..##..........########.....###....##....##.########.##..........########.##....##.########.
-.##....##.##.....##.###...##....##....##.....##.##.....##.##..........##.....##...##.##...###...##.##.......##..........##.......###...##.##.....##
-.##.......##.....##.####..##....##....##.....##.##.....##.##..........##.....##..##...##..####..##.##.......##..........##.......####..##.##.....##
-.##.......##.....##.##.##.##....##....########..##.....##.##..........########..##.....##.##.##.##.######...##..........######...##.##.##.##.....##
-.##.......##.....##.##..####....##....##...##...##.....##.##..........##........#########.##..####.##.......##..........##.......##..####.##.....##
-.##....##.##.....##.##...###....##....##....##..##.....##.##..........##........##.....##.##...###.##.......##..........##.......##...###.##.....##
-..######...#######..##....##....##....##.....##..#######..########....##........##.....##.##....##.########.########....########.##....##.########.
+....###....########.########.########..####.########..##.....##.########.########....####.##....##.####.########
+...##.##......##.......##....##.....##..##..##.....##.##.....##....##....##...........##..###...##..##.....##...
+..##...##.....##.......##....##.....##..##..##.....##.##.....##....##....##...........##..####..##..##.....##...
+.##.....##....##.......##....########...##..########..##.....##....##....######.......##..##.##.##..##.....##...
+.#########....##.......##....##...##....##..##.....##.##.....##....##....##...........##..##..####..##.....##...
+.##.....##....##.......##....##....##...##..##.....##.##.....##....##....##...........##..##...###..##.....##...
+.##.....##....##.......##....##.....##.####.########...#######.....##....########....####.##....##.####....##...
 */
+
     attributes.add(
       attributeBoxGenerator(
         0,
@@ -1173,9 +1413,11 @@ class _MyAppState extends State<MyApp> {
       ),
     );
 
-    quickMenus.add(quickInventoryGenerator('Weapon Inventory', []));
-    quickMenus.add(quickInventoryGenerator('Quick Inventory', []));
-    quickMenus.add(quickInventoryGenerator('Active Spells', []));
+    quickMenus
+        .add(quickInventoryGenerator('Weapon Inventory', weaponsQuickIWidgets));
+    quickMenus
+        .add(quickInventoryGenerator('Quick Inventory', itemsQuickIWidgets));
+    quickMenus.add(quickInventoryGenerator('Active Spells', spellsQuickWidget));
 
 /*
 .##.....##..#######..##.....##.########
@@ -1658,6 +1900,18 @@ List<Animal> loadAnimals() {
 }
 
 /*
+..######.....###....##.....##.########....##.....##.########.########.##.....##..#######..########...######.
+.##....##...##.##...##.....##.##..........###...###.##..........##....##.....##.##.....##.##.....##.##....##
+.##........##...##..##.....##.##..........####.####.##..........##....##.....##.##.....##.##.....##.##......
+..######..##.....##.##.....##.######......##.###.##.######......##....#########.##.....##.##.....##..######.
+.......##.#########..##...##..##..........##.....##.##..........##....##.....##.##.....##.##.....##.......##
+.##....##.##.....##...##.##...##..........##.....##.##..........##....##.....##.##.....##.##.....##.##....##
+..######..##.....##....###....########....##.....##.########....##....##.....##..#######..########...######.
+*/
+
+//TODO load methods
+
+/*
 .##.....##.####.##....##..#######..########.....##.....##.########.########.##.....##..#######..########...######.
 .###...###..##..###...##.##.....##.##.....##....###...###.##..........##....##.....##.##.....##.##.....##.##....##
 .####.####..##..####..##.##.....##.##.....##....####.####.##..........##....##.....##.##.....##.##.....##.##......
@@ -1718,6 +1972,39 @@ int percentageOfLevel(int xp) {
   return ret;
 }
 
+int charToInt(String char) {
+  char.toLowerCase();
+  if (char.length == 1) {
+    if (char == 'a') return 1;
+    if (char == 'b') return 2;
+    if (char == 'c') return 3;
+    if (char == 'd') return 4;
+    if (char == 'e') return 5;
+    if (char == 'f') return 6;
+    if (char == 'g') return 7;
+    if (char == 'h') return 8;
+    if (char == 'i') return 9;
+    if (char == 'j') return 10;
+    if (char == 'k') return 11;
+    if (char == 'l') return 12;
+    if (char == 'm') return 13;
+    if (char == 'n') return 14;
+    if (char == 'o') return 15;
+    if (char == 'p') return 16;
+    if (char == 'q') return 17;
+    if (char == 'r') return 18;
+    if (char == 's') return 19;
+    if (char == 't') return 20;
+    if (char == 'u') return 21;
+    if (char == 'v') return 22;
+    if (char == 'w') return 23;
+    if (char == 'x') return 24;
+    if (char == 'y') return 25;
+    if (char == 'z') return 26;
+  }
+  return 0;
+}
+
 /*
 ..######..##..........###.....######...######..########..######.
 .##....##.##.........##.##...##....##.##....##.##.......##....##
@@ -1748,6 +2035,62 @@ class Spell {
     _effect = effect_;
   }
 
+  String getName() {
+    return _name;
+  }
+
+  int getLevel() {
+    return _level;
+  }
+
+  String getRange() {
+    return _range;
+  }
+
+  int getActive() {
+    return _active;
+  }
+
+  String getDuration() {
+    return _duration;
+  }
+
+  String getDescription() {
+    return _description;
+  }
+
+  String getEffect() {
+    return _effect;
+  }
+
+  void setName(String newName) {
+    _name = newName;
+  }
+
+  void setLevel(int newLevel) {
+    _level = newLevel;
+  }
+
+  void setRange(String newRange) {
+    _range = newRange;
+  }
+
+  void setActive(int newActive) {
+    _active = newActive;
+  }
+
+  void setDuration(String newDuration) {
+    _duration = newDuration;
+  }
+
+  void setDescription(String newDescriprion) {
+    _description = newDescriprion;
+  }
+
+  void setEffect(String newEffect) {
+    _effect = newEffect;
+  }
+
   @override
   String toString() {
     return '$_name, $_level, $_range, $_active, $_duration, $_description, $_effect';
@@ -1771,67 +2114,75 @@ class Item {
   String toString() {
     return '$_name, $_number, $_description, $_priority';
   }
-}
 
-class Animal {
-  String _name = '';
-  int _number = 0;
-  String _description = '';
-  int _priority = 0;
-
-  Animal(String name_, int number_, String description_, int priority_) {
-    _name = name_;
-    _number = number_;
-    _description = description_;
-    _priority = priority_;
+  String getName() {
+    return _name;
   }
 
-  @override
-  String toString() {
-    return '$_name, $_number, $_description, $_priority';
-  }
-}
-
-class Consumable {
-  String _name = '';
-  int _number = 0;
-  String _description = '';
-  int _priority = 0;
-
-  Consumable(String name_, int number_, String description_, int priority_) {
-    _name = name_;
-    _number = number_;
-    _description = description_;
-    _priority = priority_;
+  int getNumber() {
+    return _number;
   }
 
-  @override
-  String toString() {
-    return '$_name, $_number, $_description, $_priority';
+  String getDescription() {
+    return _description;
+  }
+
+  int getPriority() {
+    return _priority;
+  }
+
+  void setName(String newName) {
+    _name = newName;
+  }
+
+  void setNumber(int newNumber) {
+    _number = newNumber;
+  }
+
+  void setDescription(String newDescription) {
+    _description = newDescription;
+  }
+
+  void setPriority(int newPriority) {
+    _priority = newPriority;
   }
 }
 
-class Weapon {
-  String _name = '';
-  int _number = 0;
-  String _description = '';
+class Animal extends Item {
+  Animal(String name_, int number_, String description_, int priority_)
+      : super(name_, number_, description_, priority_);
+}
+
+class Consumable extends Item {
+  Consumable(String name_, int number_, String description_, int priority_)
+      : super(name_, number_, description_, priority_);
+}
+
+class Weapon extends Item {
   String _damage = '';
   String _bonus = '';
-  int _priority = 0;
 
   Weapon(String name_, int number_, String description_, String damage_,
-      String bonus_, int priority_) {
-    _name = name_;
-    _number = number_;
-    _description = description_;
+      String bonus_, int priority_)
+      : super(name_, number_, description_, priority_) {
     _damage = damage_;
     _bonus = bonus_;
-    _priority = priority_;
   }
 
-  @override
-  String toString() {
-    return '$_name, $_number, $_description, $_damage, $_bonus, $_priority';
+  String getDamage() {
+    return _damage;
+  }
+
+  String getBonus() {
+    return _bonus;
+  }
+
+  void setDamage(String newDamage) {
+    _damage = newDamage;
+  }
+
+  void setBonus(String newBonus) {
+    _bonus = newBonus;
   }
 }
 
@@ -1847,46 +2198,163 @@ class Inventory {
     _consumables = consumables;
     _weapons = weapons;
     _animals = animals;
+    inventoryOrder();
   }
 
   void inventoryOrder() {
-    _inventoryOrderItems();
-    _inventoryOrderConsumables();
-    _inventoryOrderWeapons();
-    _inventoryOrderAnimals();
+    _alphabeticalOrderItems();
+    _alphabeticalOrderConsumables();
+    _alphabeticalOrderWeapons();
+    _alphabeticalOrderAnimals();
   }
 
-  void _inventoryOrderItems() {
-    //TODO
+  void _alphabeticalOrderItems() {
+    for (int i = 0; i < _items.length - 1; i++) {
+      for (int j = i + 1; j < _items.length; j++) {
+        if (_items[i].getName().length > _items[j].getName().length) {
+          Item temp = _items[i];
+          _items[i] = _items[j];
+          _items[j] = temp;
+        }
+
+        for (int k = 0; k < _items[i].getName().length; k++) {
+          if (charToInt(_items[i].getName()[k]) >
+              charToInt(_items[j].getName()[k])) {
+            Item temp = _items[i];
+            _items[i] = _items[j];
+            _items[j] = temp;
+            return;
+          } else {
+            if (charToInt(_items[i].getName()[k]) <
+                charToInt(_items[j].getName()[k])) {
+              return;
+            }
+          }
+        }
+      }
+    }
   }
-  void _inventoryOrderConsumables() {
-    //TODO
+
+  void _alphabeticalOrderConsumables() {
+    for (int i = 0; i < _consumables.length - 1; i++) {
+      for (int j = i + 1; j < _consumables.length; j++) {
+        if (_consumables[i].getName().length >
+            _consumables[j].getName().length) {
+          Consumable temp = _consumables[i];
+          _consumables[i] = _consumables[j];
+          _consumables[j] = temp;
+        }
+
+        for (int k = 0; k < _consumables[i].getName().length; k++) {
+          if (charToInt(_consumables[i].getName()[k]) >
+              charToInt(_consumables[j].getName()[k])) {
+            Consumable temp = _consumables[i];
+            _consumables[i] = _consumables[j];
+            _consumables[j] = temp;
+            return;
+          } else {
+            if (charToInt(_consumables[i].getName()[k]) <
+                charToInt(_consumables[j].getName()[k])) {
+              return;
+            }
+          }
+        }
+      }
+    }
   }
-  void _inventoryOrderWeapons() {
-    //TODO
+
+  void _alphabeticalOrderWeapons() {
+    for (int i = 0; i < _weapons.length - 1; i++) {
+      for (int j = i + 1; j < _weapons.length; j++) {
+        if (_weapons[i].getName().length > _weapons[j].getName().length) {
+          Weapon temp = _weapons[i];
+          _weapons[i] = _weapons[j];
+          _weapons[j] = temp;
+        }
+
+        for (int k = 0; k < _weapons[i].getName().length; k++) {
+          if (charToInt(_weapons[i].getName()[k]) >
+              charToInt(_weapons[j].getName()[k])) {
+            Weapon temp = _weapons[i];
+            _weapons[i] = _weapons[j];
+            _weapons[j] = temp;
+            return;
+          } else {
+            if (charToInt(_weapons[i].getName()[k]) <
+                charToInt(_weapons[j].getName()[k])) {
+              return;
+            }
+          }
+        }
+      }
+    }
   }
-  void _inventoryOrderAnimals() {
-    //TODO
+
+  void _alphabeticalOrderAnimals() {
+    for (int i = 0; i < _animals.length - 1; i++) {
+      for (int j = i + 1; j < _animals.length; j++) {
+        if (_animals[i].getName().length > _animals[j].getName().length) {
+          Animal temp = _animals[i];
+          _animals[i] = _animals[j];
+          _animals[j] = temp;
+        }
+
+        for (int k = 0; k < _animals[i].getName().length; k++) {
+          if (charToInt(_animals[i].getName()[k]) >
+              charToInt(_animals[j].getName()[k])) {
+            Animal temp = _animals[i];
+            _animals[i] = _animals[j];
+            _animals[j] = temp;
+            return;
+          } else {
+            if (charToInt(_animals[i].getName()[k]) <
+                charToInt(_animals[j].getName()[k])) {
+              return;
+            }
+          }
+        }
+      }
+    }
   }
 
   void addItem(Item item) {
+    //TODO chech item already present
     _items.add(item);
-    _inventoryOrderItems();
+    _alphabeticalOrderItems();
   }
 
   void addConsumable(Consumable consumable) {
+    //TODO chech item already present
     _consumables.add(consumable);
-    _inventoryOrderConsumables();
+    _alphabeticalOrderConsumables();
   }
 
   void addWeapon(Weapon weapon) {
+    //TODO chech item already present
     _weapons.add(weapon);
-    _inventoryOrderWeapons();
+    _alphabeticalOrderWeapons();
   }
 
   void addAnimals(Animal animal) {
+    //TODO chech item already present
     _animals.add(animal);
-    _inventoryOrderAnimals();
+    _alphabeticalOrderAnimals();
+  }
+
+  void removeItem(Item item) {
+    //TODO remove
+  }
+
+  void removeConsumable(Consumable consumable) {
+    //TODO remove
+  }
+
+  void removeWeapon(Weapon weapon) {
+    //TODO remove
+  }
+
+  void removeAnimals(Animal animal) {
+    //TODO remove
   }
 
   List<Item> getItems() {
@@ -1903,6 +2371,19 @@ class Inventory {
 
   List<Animal> getAnimals() {
     return _animals;
+  }
+
+  List<Item> getInventory() {
+    List<Item> wholeInvontory = [];
+
+    inventoryOrder();
+
+    wholeInvontory.addAll(_items);
+    wholeInvontory.addAll(_consumables);
+    wholeInvontory.addAll(_weapons);
+    wholeInvontory.addAll(_animals);
+
+    return wholeInvontory;
   }
 
   @override
@@ -1940,15 +2421,21 @@ class SpellBook {
 
   SpellBook(List<Spell> spells) {
     _spells = spells;
+    spellsOrder();
   }
 
   void spellsOrder() {
-    //TODO to reorder the spells in active order, then level, then alphabetical order
+    //TODO to reorder the spells in level order, then active, then alphabetical order
   }
 
   void addSpell(Spell spell) {
+    //TODO check spell already present
     _spells.add(spell);
     spellsOrder();
+  }
+
+  void removeSpell(Spell spell) {
+    //TODO remove
   }
 
   List<Spell> getSpells() {

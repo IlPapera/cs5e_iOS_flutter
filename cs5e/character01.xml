@@ -52,7 +52,7 @@
     <l1slotsTotal>0</l1slotsTotal>
     <l1slotsUsed>0</l1slotsUsed>
     <l2slotsTotal>2</l2slotsTotal>
-    <l2slotsUsed>2</l2slotsUsed>
+    <l2slotsUsed>0</l2slotsUsed>
     <l3slotsTotal>0</l3slotsTotal>
     <l3slotsUsed>0</l3slotsUsed>
     <l4slotsTotal>0</l4slotsTotal>
@@ -84,18 +84,18 @@
         <damage>1d4 T</damage>
         <bonus>+1</bonus>
         <description>Falcetto da battaglia</description>
-        <priority>0</priority>
+        <priority>1</priority>
     </weapon>
-    <consumable>
-        <name>Candelotto runico</name>
-        <number>5</number>
-        <description>Candelotto di dinamite con delle strane rune sul corpo</description>
-        <priority>0</priority>
-    </consumable>
     <consumable>
         <name>Razione giornaliera</name>
         <number>8</number>
         <description>Una razione giornaliera</description>
+        <priority>0</priority>
+    </consumable>
+    <consumable>
+        <name>Candelotto runico</name>
+        <number>5</number>
+        <description>Candelotto di dinamite con delle strane rune sul corpo</description>
         <priority>0</priority>
     </consumable>
     <item>
@@ -131,7 +131,7 @@
     </spell>
     <spell>
         <name>Mammt Blast</name>
-        <level>0</level>
+        <level>2</level>
         <range>120 feet</range>
         <activation>V, S</activation>
         <duration>Instantaneous</duration>
@@ -143,7 +143,7 @@
             You can direct the beams at the same target or at different ones.
             Make a separate attack roll for each beam.
         </effect>
-        <active>0</active>
+        <active>1</active>
     </spell>
 </spells>
 
