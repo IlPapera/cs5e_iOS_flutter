@@ -118,6 +118,8 @@ int heightPixel = 1080;
 
 int fractionQI = 0;
 
+int selectedItemIndex = 0;
+
 /*
 .##.....##....###....####.##....##
 .###...###...##.##....##..###...##
@@ -598,6 +600,25 @@ Widget attributeBoxGenerator(int index, List<String> stats, List<String> profs,
     ),
   );
   return returnBox;
+}
+
+/*
+.####.##....##.##.....##.########.##....##.########..#######..########..##....##.....######.....###....########..########...######.
+..##..###...##.##.....##.##.......###...##....##....##.....##.##.....##..##..##.....##....##...##.##...##.....##.##.....##.##....##
+..##..####..##.##.....##.##.......####..##....##....##.....##.##.....##...####......##........##...##..##.....##.##.....##.##......
+..##..##.##.##.##.....##.######...##.##.##....##....##.....##.########.....##.......##.......##.....##.########..##.....##..######.
+..##..##..####..##...##..##.......##..####....##....##.....##.##...##......##.......##.......#########.##...##...##.....##.......##
+..##..##...###...##.##...##.......##...###....##....##.....##.##....##.....##.......##....##.##.....##.##....##..##.....##.##....##
+.####.##....##....###....########.##....##....##.....#######..##.....##....##........######..##.....##.##.....##.########...######.
+*/
+
+Widget inventoryItemGenerator(int index) {
+  return Expanded(
+    flex: 1,
+    child: Card(
+      child: Text('Element $index'),
+    ),
+  );
 }
 
 /*
@@ -1509,6 +1530,16 @@ class _MyAppState extends State<MyApp> {
 .####.##....##....###....########.##....##....##.....#######..##.....##....##...
 */
 
+    selectItemIndex(5);
+    List<Item> inventoryList = inventory.getInventory();
+    Item selectedItem = inventoryList[selectedItemIndex];
+
+    List<Widget> mainInventoryItems = [];
+
+    for (int i = 0; i < inventoryList.length; i++) {
+      mainInventoryItems.add(inventoryItemGenerator(i));
+    }
+
     Widget inventoryPage = Scaffold(
       body: Row(
         children: [
@@ -1517,19 +1548,7 @@ class _MyAppState extends State<MyApp> {
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: Card(
-                    color: Colors.blue,
-                    child: Container(
-                      margin: const EdgeInsets.all(10),
-                      padding: const EdgeInsets.all(10),
-                      height: 100,
-                      width: 100,
-                      child: const Text('Inventory'),
-                      //decoration: BoxDecoration(shape: BoxShape.circle),
-                    ),
-                  ),
-                ),
+                child: ListView(children: mainInventoryItems),
               ),
             ),
           ),
@@ -1538,18 +1557,25 @@ class _MyAppState extends State<MyApp> {
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: Card(
-                    color: Colors.blue,
-                    child: Container(
-                      margin: const EdgeInsets.all(10),
-                      padding: const EdgeInsets.all(10),
-                      height: 100,
-                      width: 100,
-                      child: const Text('Inventory'),
-                      //decoration: BoxDecoration(shape: BoxShape.circle),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(selectedItem.getName()),
+                      ),
                     ),
-                  ),
+                    const Expanded(
+                      flex: 1,
+                      child: Divider(),
+                    ),
+                    Expanded(
+                      flex: 45,
+                      child: Text(selectedItem.getDescription()),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -2005,6 +2031,10 @@ int charToInt(String char) {
   return 0;
 }
 
+void selectItemIndex(int index) {
+  selectedItemIndex = index;
+}
+
 /*
 ..######..##..........###.....######...######..########..######.
 .##....##.##.........##.##...##....##.##....##.##.......##....##
@@ -2148,11 +2178,6 @@ class Item {
   }
 }
 
-class Animal extends Item {
-  Animal(String name_, int number_, String description_, int priority_)
-      : super(name_, number_, description_, priority_);
-}
-
 class Consumable extends Item {
   Consumable(String name_, int number_, String description_, int priority_)
       : super(name_, number_, description_, priority_);
@@ -2167,6 +2192,14 @@ class Weapon extends Item {
       : super(name_, number_, description_, priority_) {
     _damage = damage_;
     _bonus = bonus_;
+  }
+
+  @override
+  String getDescription() {
+    String returnString = '';
+    returnString += 'Damage: ${getDamage()}\nBonus: ${getBonus()}\n\n';
+    returnString += _description;
+    return returnString;
   }
 
   String getDamage() {
@@ -2184,6 +2217,11 @@ class Weapon extends Item {
   void setBonus(String newBonus) {
     _bonus = newBonus;
   }
+}
+
+class Animal extends Item {
+  Animal(String name_, int number_, String description_, int priority_)
+      : super(name_, number_, description_, priority_);
 }
 
 class Inventory {
