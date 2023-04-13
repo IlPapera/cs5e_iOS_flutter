@@ -15,7 +15,7 @@
     <wisdom>12</wisdom>
     <charisma>16</charisma>
     <maxHealth>28</maxHealth>
-    <currentHealth>28</currentHealth>
+    <currentHealth>29</currentHealth>
     <hitDice>1d8</hitDice>
     <speed>18</speed>
     <experience>2100</experience>
@@ -101,13 +101,13 @@
     <item>
         <name>Roccia a forma di occhio</name>
         <number>1</number>
-        <description></description>
+        <description>Una roccia a forma di occhio, sembra avere sopra un pulsante</description>
         <priority>1</priority>
     </item>
     <item>
         <name>Occhio a forma di roccia</name>
         <number>1</number>
-        <description></description>
+        <description>Un occhio a forma di roccia, sembra avere sopra un pulsante</description>
         <priority>0</priority>
     </item>
 </inventory>
