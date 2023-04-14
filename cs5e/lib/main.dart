@@ -25,6 +25,10 @@ final List<int> xpPerLevel = [
   355000
 ];
 
+final List<String> settingNames = [
+  'darkMode',
+];
+
 final List<String> attributeNames = [
   'Strength',
   'Dexterity',
@@ -615,8 +619,11 @@ Widget attributeBoxGenerator(int index, List<String> stats, List<String> profs,
 Widget inventoryItemGenerator(int index) {
   return Expanded(
     flex: 1,
-    child: Card(
-      child: Text('Element $index'),
+    child: GestureDetector(
+      onTap: pressedFunctionInventoryItem(index),
+      child: Card(
+        child: Text('Element $index'),
+      ),
     ),
   );
 }
@@ -663,6 +670,8 @@ class _MyAppState extends State<MyApp> {
     List<Widget> controlPanelWidgets = [];
 
     List<String> loadedStats = loadStats();
+
+    List<String> loadedSettings = loadSettings();
 
     Inventory inventory =
         Inventory(loadItems(), loadConsumables(), loadWeapons(), loadAnimals());
@@ -1779,7 +1788,20 @@ class _MyAppState extends State<MyApp> {
 .########..#######..##.....##.########.....##.....##.########....##....##.....##..#######..########...######.
 */
 
-//void loadCharacter() {
+List<String> loadSettings() {
+  final file = File('character01.xml');
+  final document = XmlDocument.parse(file.readAsStringSync());
+  List<String> tempReturn = [];
+
+  for(int i = 0; i < settingNames.length; i++) {
+    tempReturn.add(
+      detag(document.findAllElements(settingNames[i]).toList().toString(),
+      settingNames[i]));
+  }
+
+  return tempReturn;
+}
+
 List<String> loadStats() {
   final file = File('character01.xml');
   final document = XmlDocument.parse(file.readAsStringSync());
@@ -2543,4 +2565,8 @@ void pressedFunctionWisdom() {
 
 void pressedFunctionCharisma() {
   debugPrint('\nmammtCharisma\n');
+}
+
+void pressedFunctionInventoryItem(int index) {
+  
 }
